@@ -1,53 +1,23 @@
 class Peca{
-  private int x;
-  private int y;
-  private int largura;
-  private int altura;
-  private int direcao;
-  protected PImage img;
-  protected Jogador dono;
+  private PecaCore peca;
   
-  public static final int CIMA = -1;
-  public static final int BAIXO = 1;
-  
-  public Peca(int d){
-    this.direcao = d;
-    this.largura = 80;
-    this.altura = 80;
+  public Peca(PecaCore p){
+    this.peca = p;
   }
   
-  
-  
   public int getX(){
-    return this.x;
+    return this.peca.getX();
   }
   
   public int getY(){
-    return this.y;
+    return this.peca.getY();
   }
-  public void setX(int x){
-    this.x = x;
-  }
-  
-  public void setY(int y){
-    this.y = y;
-  } 
-  
-  public PImage getImage(){
-    return this.img;
+   
+  public JogadorCore getDono(){
+    return this.peca.getDono();
   }
   
-  public void desenhar(int offx, int offy){
-    //if(this.direcao == Peca.BAIXO){
-    //  pushMatrix();
-    //  translate(offx,offy);
-    //  rotate(PI);
-    //  image(this.img, offx, offy,this.largura, this.altura);
-    //  popMatrix();
-    //}else{
-        image(this.img, offx, offy,this.largura, this.altura);
-    //}
-
+  public String getNome(){
+    return this.peca.getNome();
   }
-
 }
