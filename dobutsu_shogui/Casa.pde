@@ -1,17 +1,12 @@
-class CasaCore{
+class Casa{
   private int x;
   private int y;
-  private PecaCore peca;
+  private Peca peca;
   
-  public CasaCore(int x, int y){
+  public Casa(int x, int y, Peca p){
     this.x = x;
     this.y = y;
-  }
-  
-  public void colocarPeca(PecaCore p){
     this.peca = p;
-    p.setX(this.x);
-    p.setY(this.y);
   }
   
   public int getX(){
@@ -20,28 +15,16 @@ class CasaCore{
   public int getY(){
     return this.y;
   }
-  
+      
   public boolean temPeca(){
     if(this.peca == null){
-      return true;
-    }else{
       return false;
+    }else{
+      return true;
     }
   }
-  
-  public void removerPeca(){
-    this.peca = null;
-  }
- 
-  public PecaCore getPeca(){
+   
+  public Peca getPeca(){
     return this.peca;
-  }
-  
-  public void desenhar(int offx, int offy){
-    rect(offx+this.x,offy+this.y,80,80);
-    if(this.peca != null){
-      this.peca.desenhar(offx,offy);
-    }
-    
   }
 }

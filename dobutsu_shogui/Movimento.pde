@@ -13,8 +13,7 @@ class Movimento{
     this.y = y;
     this.tipo = tipo;
     this.peca = p;
-
-}
+  }
   
   public String getTipo(){
     return this.tipo;
@@ -28,5 +27,9 @@ class Movimento{
   }
   public int getY(){
     return this.y;
+  }
+  
+  public String toString(){
+    return "[movimento: "+this.x+","+this.y+","+this.peca.getNome()+","+tipo+"]";
   }
 }

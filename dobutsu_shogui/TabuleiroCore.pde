@@ -18,6 +18,7 @@ class TabuleiroCore{
       }
     }
   }
+  
   public void addPeca(PecaCore p, int x, int y){
     this.casas[x][y].colocarPeca(p);
   }
@@ -25,16 +26,14 @@ class TabuleiroCore{
   public void removerPeca(PecaCore p){
     int px = p.getX();
     int py = p.getY();
-    p.setX(-1);
-    p.setY(-1);
-    this.casas[px][py] = null;
+    this.casas[px][py].removerPeca();
   }
   
   public CasaCore getCasa(int x, int y){
-    if(x < 0 || x > this.largura-1 || y < 0 || y > this.altura+1){
-      return this.casas[x][y];
-    }else{
+    if(x < 0 || x > this.largura-1 || y < 0 || y > this.altura-1){
       return null;
+    }else{
+      return this.casas[x][y];
     }
   }
   
@@ -44,6 +43,31 @@ class TabuleiroCore{
   
   public int getAltura(){
     return this.altura;
+  }
+  
+  public ArrayList<PecaCore> getPecas(){
+    ArrayList<PecaCore> pecas = new ArrayList<PecaCore>(); 
+     for(int i =0;i<this.largura;i++){
+      for(int j =0;j<this.altura;j++){
+        
+        if(this.casas[i][j].temPeca())
+          pecas.add(this.casas[i][j].getPeca());
+        }
+      }
+      return pecas;
+     }
+     
+  public ArrayList<PecaCore> getPecasLeoes(){
+    ArrayList<PecaCore> pecas = new ArrayList<PecaCore>(); 
+     for(int i =0;i<this.largura;i++){
+      for(int j =0;j<this.altura;j++){
+        
+        if(this.casas[i][j].temPeca() && this.casas[i][j].getPeca().getClass() == Leao.class){
+          pecas.add(this.casas[i][j].getPeca());
+        }
+      }
+       }
+      return pecas;
   }
   
   public void desenhar(){
