@@ -1,6 +1,6 @@
 class Elefante extends PecaCore{
-public Elefante(int d){
-    super(d);
+public Elefante(int id, int d){
+    super(id, d);
     this.nome = "ele";
     this.img = loadImage("elefante.jpg");
   }

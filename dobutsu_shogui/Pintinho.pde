@@ -1,6 +1,6 @@
 class Pintinho extends PecaCore{
-  public Pintinho(int d){
-    super(d);
+  public Pintinho(int id, int d){
+    super(id, d);
     this.nome = "pin";
     this.img = loadImage("pintinho.jpg");
   }

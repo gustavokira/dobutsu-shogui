@@ -33,6 +33,6 @@ class Peca{
     return this.matrizDeMovimento;
   }
   public String toString(){
-    return "["+this.x+","+this.y+","+this.nome+","+this.dono.getId()+"]";
+    return "peca:"+this.x+","+this.y+","+this.nome+","+this.dono.getId()+";\n";
   }
 }

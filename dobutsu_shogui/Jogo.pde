@@ -1,5 +1,7 @@
 class Jogo{
   
+  private FabricaPecaCore fabricaPeca;
+  
   private TabuleiroCore tabuleiro;
   private JogadorCore jogador1;
   private JogadorCore jogador2;
@@ -11,6 +13,8 @@ class Jogo{
   private int estado;
   
   public Jogo(Estrategia e1, Estrategia e2){
+    
+    this.fabricaPeca = new FabricaPecaCore();
     
     this.tabuleiro = new TabuleiroCore();
     this.jogador1 = new JogadorCore(e1,this.tabuleiro, 1);
@@ -56,23 +60,24 @@ class Jogo{
   public void turno(){
     criarInfo();
     if(this.info.getMovimentos().size()>0){
-    Movimento m = this.jogadorAtivo.jogar(this.info);
-    int px = m.getX();
-    int py = m.getY();
-    PecaCore p = acharPecaNoCore(m.getPeca());
-    
-    if(m.getTipo().equals("mover")){
-      CasaCore c = this.tabuleiro.getCasa(px,py);
-      if(c.temPeca()){
-        PecaCore alvo = c.getPeca();
-        this.moverPecaParaMao(alvo, this.jogadorAtivo);
-      }
-      this.moverPecaNoTabuleiro(p,px,py);
+      Movimento m = this.jogadorAtivo.jogar(this.info);
+      print(m);
+      int px = m.getX();
+      int py = m.getY();
+      PecaCore p = acharPecaNoCore(m.getPeca());
       
-    }
-    else if(m.getTipo().equals("colocar")){
-      this.colocarPecaNoTabuleiro(p,px,py);
-    }
+      if(m.getTipo().equals("mover")){
+        CasaCore c = this.tabuleiro.getCasa(px,py);
+        if(c.temPeca()){
+          PecaCore alvo = c.getPeca();
+          this.moverPecaParaMao(alvo, this.jogadorAtivo);
+        }
+        this.moverPecaNoTabuleiro(p,px,py);
+        
+      }
+      else if(m.getTipo().equals("colocar")){
+        this.colocarPecaNoTabuleiro(p,px,py);
+      }
     }else{
       this.irParafim();
     }
@@ -89,7 +94,6 @@ class Jogo{
   }
   
   private void irParafim(){
-     println("acabooo");
      this.estado = 2;
   }
   
@@ -120,7 +124,6 @@ class Jogo{
   }
   private void colocarPecaNoTabuleiro(PecaCore p, int x,int y){
     this.jogadorAtivo.removePecaDaMao(p);
-    this.jogadorAtivo.removePeca(p);
     this.tabuleiro.addPeca(p,x,y);
   }
   
@@ -144,44 +147,44 @@ class Jogo{
   }
   
   private void criarPecasJogador1(){
-    PecaCore g = new Girafa(PecaCore.BAIXO);
+    PecaCore g = fabricaPeca.criarGirafaParaBaixo();
     this.jogador1.colocarPeca(g);
     g.setDono(this.jogador1);
     this.tabuleiro.addPeca(g,0,0);
     
-    PecaCore l = new Leao(PecaCore.BAIXO);
+    PecaCore l = fabricaPeca.criarLeaoParaBaixo();
     this.jogador1.colocarPeca(l);
     l.setDono(this.jogador1);
     this.tabuleiro.addPeca(l,1,0);
     
-    PecaCore e = new Elefante(PecaCore.BAIXO);
+    PecaCore e = fabricaPeca.criarElefanteParaBaixo();
     this.jogador1.colocarPeca(e);
     e.setDono(this.jogador1);
     this.tabuleiro.addPeca(e,2,0);
     
-    PecaCore p = new Pintinho(PecaCore.BAIXO);
+    PecaCore p = fabricaPeca.criarPintinhoParaBaixo();
     this.jogador1.colocarPeca(p);
     p.setDono(this.jogador1);
     this.tabuleiro.addPeca(p,1,1);
   }
   
   private void criarPecasJogador2(){
-    PecaCore g = new Girafa(PecaCore.CIMA);
+    PecaCore g = fabricaPeca.criarGirafaParaCima();
     this.jogador2.colocarPeca(g);
     g.setDono(this.jogador2);
     this.tabuleiro.addPeca(g,0,3);
     
-    PecaCore l = new Leao(PecaCore.CIMA);
+    PecaCore l = fabricaPeca.criarLeaoParaCima();
     this.jogador2.colocarPeca(l);
     l.setDono(this.jogador2);
     this.tabuleiro.addPeca(l,1,3);
     
-    PecaCore e = new Elefante(PecaCore.CIMA);
+    PecaCore e = fabricaPeca.criarElefanteParaCima();
     this.jogador2.colocarPeca(e);
     e.setDono(this.jogador2);
     this.tabuleiro.addPeca(e,2,3);
     
-    PecaCore p = new Pintinho(PecaCore.CIMA);
+    PecaCore p = fabricaPeca.criarPintinhoParaCima();
     this.jogador2.colocarPeca(p);
     p.setDono(this.jogador2);
     this.tabuleiro.addPeca(p,1,2);

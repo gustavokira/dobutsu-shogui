@@ -12,7 +12,6 @@ public void draw(){
    jogo.desenhar();
    if(jogo.continuar()){
      jogo.turno();
-     delay(1000);
-     println("turno "+jogo.getTurno());
+     delay(000);
    }
 }

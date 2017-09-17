@@ -21,4 +21,7 @@ class Jogador{
   public ArrayList<Peca> getPecasNaMao(){
     return this.pecasNaMao;
   }
+  public String toString(){
+    return "jogador:\n"+this.pecasNaMao;
+  }
 }

@@ -1,5 +1,6 @@
 class PecaCore{
   
+  private int id;
   private int x;
   private int y;
   private int largura;
@@ -13,10 +14,12 @@ class PecaCore{
   public static final int CIMA = -1;
   public static final int BAIXO = 1;
   
-  public PecaCore(int d){
+  public PecaCore(int id, int d){
     this.direcao = d;
+    this.id = id;
     this.largura = 80;
     this.altura = 80;
+    
   }
   
   public void mudarDirecao(){
@@ -56,6 +59,9 @@ class PecaCore{
   
   public String getNome(){
     return this.nome;
+  }
+  public int getId(){
+    return this.id;
   }
   
   public int[][] getMatrizDeMovimento(){

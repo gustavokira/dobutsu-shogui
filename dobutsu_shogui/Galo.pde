@@ -1,6 +1,6 @@
 class Galo extends PecaCore{
-public Galo(int d){
-    super(d);
+public Galo(int id, int d){
+    super(id, d);
     this.nome = "gal";
     this.img = loadImage("galo.jpg");
   }

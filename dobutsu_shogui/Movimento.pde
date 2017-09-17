@@ -7,12 +7,14 @@ class Movimento{
   private String tipo;
   private int x;
   private int y;
+  private Jogador jogador;
   
-  public Movimento(Peca p, int x, int y,String tipo){
+  public Movimento(Peca p, int x, int y,String tipo, Jogador j){
     this.x = x;
     this.y = y;
     this.tipo = tipo;
     this.peca = p;
+    this.jogador = j;
   }
   
   public String getTipo(){
@@ -29,7 +31,11 @@ class Movimento{
     return this.y;
   }
   
+  public Jogador getJogador(){
+    return this.jogador;
+  }
+  
   public String toString(){
-    return "[movimento: "+this.x+","+this.y+","+this.peca.getNome()+","+tipo+"]";
+    return "movimento:"+jogador.getId()+","+peca.getX()+","+peca.getY()+","+this.x+","+this.y+","+this.peca.getNome()+","+tipo+";\n";
   }
 }

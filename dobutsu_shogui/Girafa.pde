@@ -1,6 +1,6 @@
 class Girafa extends PecaCore{
-  public Girafa(int d){
-    super(d);
+  public Girafa(int id, int d){
+    super(id, d);
     this.nome = "gir";
     this.img = loadImage("girafa.jpg");
   }
