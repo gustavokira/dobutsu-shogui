@@ -35,21 +35,12 @@ class Jogo{
   
   private PecaCore acharPecaNoCore(Peca p){
     ArrayList<PecaCore> pecas = new ArrayList<PecaCore>();
-    for(PecaCore pc: this.jogador1.getPecasNaMao()){
-      pecas.add(pc);
-    }
-    for(PecaCore pc: this.jogador2.getPecasNaMao()){
-      pecas.add(pc);
-    }
-    for(PecaCore pc: this.tabuleiro.getPecas()){
-      pecas.add(pc);
-    }
+    pecas.addAll(this.jogador1.getPecasNaMao());
+    pecas.addAll(this.jogador2.getPecasNaMao());
+    pecas.addAll(this.tabuleiro.getPecas());
     
     for(PecaCore pc: pecas){
-      if(pc.getX() == p.getX() &&
-         pc.getY() == p.getY() &&
-         pc.getNome() == p.getNome()
-      ){
+      if(pc.getId() == p.getId()){
         return pc;
       }
     }
@@ -58,7 +49,8 @@ class Jogo{
   }
   
   public void turno(){
-    criarInfo();
+    this.criarInfo();
+    
     if(this.info.getMovimentos().size()>0){
       Movimento m = this.jogadorAtivo.jogar(this.info);
       print(m);
@@ -74,6 +66,9 @@ class Jogo{
         }
         this.moverPecaNoTabuleiro(p,px,py);
         
+        if(p.getClass() == Pintinho.class){
+          this.transformarEmGalo(p);
+        }
       }
       else if(m.getTipo().equals("colocar")){
         this.colocarPecaNoTabuleiro(p,px,py);
@@ -84,6 +79,7 @@ class Jogo{
     
     
     JogadorCore ganhador = this.verificarLeoesNosFins();
+    
     if(ganhador != null){
       this.irParafim();
     }
@@ -100,7 +96,6 @@ class Jogo{
   private JogadorCore verificarLeoesNosFins(){
     ArrayList<PecaCore> pecas = this.tabuleiro.getPecasLeoes();
     for(PecaCore p:pecas){
- 
       if(p.getDono() == this.jogador1 && p.getY() == 3){
         return this.jogador1;
       }
@@ -110,12 +105,29 @@ class Jogo{
     }
     return null;
   }
+  private void transformarEmGalo(PecaCore p){
+    if(
+          (p.getDono() == this.jogador1 && p.getY() == 3) ||
+          (p.getDono() == this.jogador2 && p.getY() == 0)
+        ){
+          
+            int x = p.getX();
+            int y = p.getY();
+            PecaCore n = ((Pintinho)p).transformar();
+            this.tabuleiro.removerPeca(p);
+            this.tabuleiro.addPeca(n,x,y);
+          
+        }
+  }
   
   private void moverPecaParaMao(PecaCore p, JogadorCore j){
+    this.tabuleiro.removerPeca(p);
+    if(p.getClass() == Galo.class){
+      p = ((Galo) p).transformar();
+    }
     j.colocarPecaNaMao(p);
     j.colocarPeca(p);
     p.setDono(j);
-    this.tabuleiro.removerPeca(p);
     p.mudarDirecao();
   }
   private void moverPecaNoTabuleiro(PecaCore p, int x,int y){
@@ -166,6 +178,7 @@ class Jogo{
     this.jogador1.colocarPeca(p);
     p.setDono(this.jogador1);
     this.tabuleiro.addPeca(p,1,1);
+    
   }
   
   private void criarPecasJogador2(){

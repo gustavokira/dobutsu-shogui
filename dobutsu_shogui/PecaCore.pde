@@ -19,7 +19,6 @@ class PecaCore{
     this.id = id;
     this.largura = 80;
     this.altura = 80;
-    
   }
   
   public void mudarDirecao(){

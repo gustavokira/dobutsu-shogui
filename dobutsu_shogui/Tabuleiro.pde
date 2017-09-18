@@ -17,7 +17,7 @@ class Tabuleiro{
           
           PecaCore pc = tc.getCasa(i,j).getPeca();
           Jogador jogador = null;
- 
+          
           if(pc.getDono().getId() == j1.getId()){
             jogador = j1;
           }else{

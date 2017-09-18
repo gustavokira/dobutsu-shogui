@@ -7,7 +7,7 @@ class Info{
   private ArrayList<Movimento>movimentos;
   private boolean meuLeaoEstaSendoAtacado;
   
-  
+  //para criar um objeto Info, é preciso ter o estado atual do jogo e quem é o jogador que deve fazer um movimento.
   public Info(Jogo jogo, JogadorCore j){
     idDoJogadorAtual = j.getId();
     this.jogador1 = new Jogador(jogo.getJogador1());
@@ -39,32 +39,12 @@ class Info{
       }
     }
     
-    ArrayList<Peca> atacandoLeao = new ArrayList<Peca>();
-
-    boolean[][] matrizDeAtaque = new boolean[this.tabuleiro.getLargura()][this.tabuleiro.getAltura()];
-    for(Peca p: pecasOponente){
-      int[][] matriz = p.getMatrizDeMovimento();
-      for(int i =0;i<matriz.length;i++){
-        int x = p.getX()+matriz[i][0];
-        int y = p.getY()+matriz[i][1];
-        
-        if(x == meuLeao.getX() && y == meuLeao.getY()){
-          atacandoLeao.add(p);
-        }
-        if( !(x < 0 || x > this.tabuleiro.getLargura()-1 || y< 0 || y > this.tabuleiro.getAltura()-1)){
-          matrizDeAtaque[x][y] = true;
-        }
-      }
-    }
-    
-    if(matrizDeAtaque[meuLeao.getX()][meuLeao.getY()]){
+    ArrayList<Peca> atacandoLeao = this.leaoEmPerigo(pecasOponente, meuLeao);
+    boolean[][] matrizDeAtaque = this.criarMatrizDeAtaque(pecasOponente);
+    if(atacandoLeao.size() > 0){
       this.meuLeaoEstaSendoAtacado = true;
     }
     
-    for(Peca p :atacandoLeao){
-      print(p);
-    }
-        
     for(Peca p :pecasMinhas){           
       int[][] matriz = p.getMatrizDeMovimento();
       for(int i =0;i<matriz.length;i++){
@@ -97,6 +77,8 @@ class Info{
     }
     
     
+    
+    
     pecasMinhas.clear();
     if(this.idDoJogadorAtual == this.jogador1.getId()){
       pecasMinhas = this.jogador1.getPecasNaMao();
@@ -111,16 +93,43 @@ class Info{
         this.movimentos.add(m);
       }
     }
-    
-    
-    
-    
   }
   
   public Tabuleiro getTabuleiro(){
     return this.tabuleiro;
   }
   
+  public ArrayList<Peca> leaoEmPerigo(ArrayList<Peca>pecas, Peca leao){
+    ArrayList<Peca>atacantes = new ArrayList<Peca>();
+    for(Peca p: pecas){
+      int[][] matriz = p.getMatrizDeMovimento();
+      for(int i =0;i<matriz.length;i++){
+        int x = p.getX()+matriz[i][0];
+        int y = p.getY()+matriz[i][1];
+        
+        if(x == leao.getX() && y == leao.getY()){
+          atacantes.add(p);
+        }
+      }
+    }
+   return atacantes;
+  }
+  
+  public boolean[][] criarMatrizDeAtaque(ArrayList<Peca>pecas){
+    boolean[][] matrizDeAtaque = new boolean[this.tabuleiro.getLargura()][this.tabuleiro.getAltura()];
+    for(Peca p: pecas){
+      int[][] matriz = p.getMatrizDeMovimento();
+      for(int i =0;i<matriz.length;i++){
+        int x = p.getX()+matriz[i][0];
+        int y = p.getY()+matriz[i][1];
+        
+        if( !(x < 0 || x > this.tabuleiro.getLargura()-1 || y< 0 || y > this.tabuleiro.getAltura()-1)){
+          matrizDeAtaque[x][y] = true;
+        }
+      }
+    }
+    return matrizDeAtaque;
+  }
   
   public Jogador getOponente(){
     if(this.idDoJogadorAtual == this.jogador1.getId()){

@@ -58,11 +58,18 @@ class TabuleiroCore{
      }
      
   public ArrayList<PecaCore> getPecasLeoes(){
+    return this.getPecasPorTipo(Leao.class);
+  }
+  public ArrayList<PecaCore> getPecasPintinhos(){
+    return this.getPecasPorTipo(Pintinho.class);
+  }
+  
+  private ArrayList<PecaCore> getPecasPorTipo(Class c){
     ArrayList<PecaCore> pecas = new ArrayList<PecaCore>(); 
      for(int i =0;i<this.largura;i++){
       for(int j =0;j<this.altura;j++){
         
-        if(this.casas[i][j].temPeca() && this.casas[i][j].getPeca().getClass() == Leao.class){
+        if(this.casas[i][j].temPeca() && this.casas[i][j].getPeca().getClass() == c){
           pecas.add(this.casas[i][j].getPeca());
         }
       }

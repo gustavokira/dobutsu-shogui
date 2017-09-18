@@ -30,4 +30,11 @@ class FabricaPecaCore{
   public PecaCore criarPintinhoParaBaixo(){
     return new Pintinho(++this.pecaId, PecaCore.BAIXO);
   }
+  
+  public PecaCore criarGaloParaCima(){
+    return new Galo(++this.pecaId, PecaCore.CIMA);
+  }
+  public PecaCore criarGaloParaBaixo(){
+    return new Galo(++this.pecaId, PecaCore.BAIXO);
+  }
 } 

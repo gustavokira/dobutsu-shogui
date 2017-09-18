@@ -5,6 +5,12 @@ class Pintinho extends PecaCore{
     this.img = loadImage("pintinho.jpg");
   }
   
+  public PecaCore transformar(){
+    PecaCore g = new Galo(this.getId(),this.direcao);
+    g.setDono(this.dono);
+    return g;
+  }
+  
   public int[][] getMatrizDeMovimento(){
     int[][] movimento = {
       {0,-1}
