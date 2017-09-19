@@ -45,6 +45,9 @@ class Info{
       this.meuLeaoEstaSendoAtacado = true;
     }
     
+    
+    
+    
     for(Peca p :pecasMinhas){           
       int[][] matriz = p.getMatrizDeMovimento();
       for(int i =0;i<matriz.length;i++){
@@ -54,22 +57,37 @@ class Info{
           Casa c = this.tabuleiro.getCasa(x,y);
           Peca destino = c.getPeca();
           
+          
+          
           //se for o leao, não pode mover onde o oponente esta atacando!
           if(p.getNome().equals("leo")){
-              if(!matrizDeAtaque[x][y]){
+              if(destino != null && !matrizDeAtaque[x][y] && destino.getDono() != p.getDono()){
                 Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
                 this.movimentos.add(m);
               }
+              if(destino == null && !matrizDeAtaque[x][y]){
+                  Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
+                  this.movimentos.add(m);
+              }
           }else{
-          
-            if(destino != null && destino.getDono() != p.getDono()){
-              Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
-              this.movimentos.add(m);
-            }
             
-            if(destino == null){
+            if(this.meuLeaoEstaSendoAtacado){
+              for(Peca atl : atacandoLeao){
+                  if(destino != null && atl.getId() == destino.getId() && destino.getDono() != p.getDono()){
+                    Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
+                    this.movimentos.add(m);
+                  }
+              }
+            }else{
+              if(destino != null && destino.getDono() != p.getDono()){
                 Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
                 this.movimentos.add(m);
+              }
+              
+              if(destino == null){
+                  Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
+                  this.movimentos.add(m);
+              }
             }
           }
         }      
@@ -78,19 +96,21 @@ class Info{
     
     
     
-    
-    pecasMinhas.clear();
-    if(this.idDoJogadorAtual == this.jogador1.getId()){
-      pecasMinhas = this.jogador1.getPecasNaMao();
-    }
-    else{
-      pecasMinhas = this.jogador2.getPecasNaMao();
-    }
-    ArrayList<Casa>casasVazias = this.tabuleiro.getCasasVazias();
-    for(Peca p :pecasMinhas){
-      for(Casa c:casasVazias){
-        Movimento m = new Movimento(p,c.getX(),c.getY(),"colocar",this.jogadorAtual);
-        this.movimentos.add(m);
+    if(!this.meuLeaoEstaSendoAtacado){
+      pecasMinhas.clear();
+      if(this.idDoJogadorAtual == this.jogador1.getId()){
+        pecasMinhas = this.jogador1.getPecasNaMao();
+      }
+      else{
+        pecasMinhas = this.jogador2.getPecasNaMao();
+      }
+      
+      ArrayList<Casa>casasVazias = this.tabuleiro.getCasasVazias();
+      for(Peca p :pecasMinhas){
+        for(Casa c:casasVazias){
+          Movimento m = new Movimento(p,c.getX(),c.getY(),"colocar",this.jogadorAtual);
+          this.movimentos.add(m);
+        }
       }
     }
   }
