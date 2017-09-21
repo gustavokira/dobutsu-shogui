@@ -5,14 +5,12 @@ class JogadorCore{
   private ArrayList<PecaCore>pecas;
   private ArrayList<PecaCore>pecasNaMao;
   private Estrategia estrategia;
-  private TabuleiroCore tabuleiro;
   
-  public JogadorCore(Estrategia e,TabuleiroCore t, int id){
+  public JogadorCore(Estrategia e,int id){
     this.pecas = new ArrayList<PecaCore>();
     this.pecasNaMao = new ArrayList<PecaCore>();
     this.estrategia = e;
     this.id = id;
-    this.tabuleiro = t;
   }
     
   public Movimento jogar(Info info){

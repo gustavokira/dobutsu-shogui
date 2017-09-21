@@ -57,8 +57,6 @@ class Info{
           Casa c = this.tabuleiro.getCasa(x,y);
           Peca destino = c.getPeca();
           
-          
-          
           //se for o leao, não pode mover onde o oponente esta atacando!
           if(p.getNome().equals("leo")){
               if(destino != null && !matrizDeAtaque[x][y] && destino.getDono() != p.getDono()){
@@ -93,8 +91,6 @@ class Info{
         }      
       }
     }
-    
-    
     
     if(!this.meuLeaoEstaSendoAtacado){
       pecasMinhas.clear();

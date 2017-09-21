@@ -17,8 +17,8 @@ class Jogo{
     this.fabricaPeca = new FabricaPecaCore();
     
     this.tabuleiro = new TabuleiroCore();
-    this.jogador1 = new JogadorCore(e1,this.tabuleiro, 1);
-    this.jogador2 = new JogadorCore(e2,this.tabuleiro, 2);
+    this.jogador1 = new JogadorCore(e1, 1);
+    this.jogador2 = new JogadorCore(e2, 2);
     this.jogadorAtivo = jogador1;
     this.turno = 0;
     
