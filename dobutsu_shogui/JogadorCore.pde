@@ -40,5 +40,11 @@ class JogadorCore{
   public int getId(){
     return this.id;
   }
+  public String getNomeEquipe(){
+    return this.estrategia.getNome();
+  }
+  public String getNomeEstrategia(){
+    return this.estrategia.getEquipe();
+  }
   
 }

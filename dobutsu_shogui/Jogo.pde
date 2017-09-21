@@ -1,13 +1,13 @@
 class Jogo{
   
   private FabricaPecaCore fabricaPeca;
+  private Log log;
   
   private TabuleiroCore tabuleiro;
   private JogadorCore jogador1;
   private JogadorCore jogador2;
   private JogadorCore jogadorAtivo;
   private int turno;
-  
   private Info info;
   
   private int estado;
@@ -15,6 +15,7 @@ class Jogo{
   public Jogo(Estrategia e1, Estrategia e2){
     
     this.fabricaPeca = new FabricaPecaCore();
+    this.log =new Log();
     
     this.tabuleiro = new TabuleiroCore();
     this.jogador1 = new JogadorCore(e1, 1);
@@ -53,7 +54,7 @@ class Jogo{
     
     if(this.info.getMovimentos().size()>0){
       Movimento m = this.jogadorAtivo.jogar(this.info);
-      print(m);
+      
       int px = m.getX();
       int py = m.getY();
       PecaCore p = acharPecaNoCore(m.getPeca());
@@ -73,6 +74,7 @@ class Jogo{
       else if(m.getTipo().equals("colocar")){
         this.colocarPecaNoTabuleiro(p,px,py);
       }
+      this.log.adicionar(this.turno, m,this.jogadorAtivo);
     }else{
       this.irParafim();
     }
@@ -91,6 +93,7 @@ class Jogo{
   
   private void irParafim(){
      this.estado = 2;
+     this.log.salvar();
   }
   
   private JogadorCore verificarLeoesNosFins(){

@@ -36,6 +36,6 @@ class Movimento{
   }
   
   public String toString(){
-    return "movimento:"+jogador.getId()+","+peca.getX()+","+peca.getY()+","+this.x+","+this.y+","+this.peca.getNome()+","+tipo+";\n";
+    return jogador.getId()+","+peca.getX()+","+peca.getY()+","+this.x+","+this.y+","+this.peca.getNome()+","+tipo;
   }
 }

@@ -10,6 +10,7 @@ class TabuleiroCore{
     this.criarCasas();
     
   }
+  
   private void criarCasas(){
     casas = new CasaCore[this.largura][this.altura];
     for(int i =0;i<this.largura;i++){
