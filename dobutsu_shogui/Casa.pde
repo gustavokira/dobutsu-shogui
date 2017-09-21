@@ -1,3 +1,4 @@
+
 class Casa{
   private int x;
   private int y;

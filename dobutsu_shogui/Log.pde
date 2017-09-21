@@ -3,17 +3,19 @@ class Log{
   private ArrayList<String>entradas;
   private PrintWriter output;
   private String header;
+  private String timestamp;
   public Log(){
     this.pasta = "logs";
     this.entradas = new ArrayList<String>();
     this.header = "turno,equipe,estrategia,id,x inicial,y inicial, x final, y final, peca, movimento";
+    this.timestamp = this.setTimeStamp();
   }
   public void adicionar(int turno,Movimento m,JogadorCore j){
     String entrada= turno+","+j.getNomeEquipe()+","+j.getNomeEstrategia()+","+m.toString();
     this.entradas.add(entrada);
   }
   public void salvar(){
-    String arquivo = this.getTimeStamp()+".log";
+    String arquivo = this.timestamp+".log";
     this.output = createWriter(this.pasta+"/"+arquivo); 
     this.output.println(this.header);
     for(String e:entradas){
@@ -22,8 +24,11 @@ class Log{
     this.output.flush();  // Writes the remaining data to the file
     this.output.close();  // Finishes the file
    }
+   public String getTimeStamp(){
+     return this.timestamp;
+   }
   
-  private String getTimeStamp(){
+  private String setTimeStamp(){
     int dia = day(); 
     int mes = month();
     int ano = year();   

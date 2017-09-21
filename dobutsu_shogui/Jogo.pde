@@ -2,6 +2,7 @@ class Jogo{
   
   private FabricaPecaCore fabricaPeca;
   private Log log;
+  private Replay replay;
   
   private TabuleiroCore tabuleiro;
   private JogadorCore jogador1;
@@ -16,6 +17,7 @@ class Jogo{
     
     this.fabricaPeca = new FabricaPecaCore();
     this.log =new Log();
+    this.replay = new Replay(this.log.getTimeStamp());
     
     this.tabuleiro = new TabuleiroCore();
     this.jogador1 = new JogadorCore(e1, 1);
@@ -75,6 +77,7 @@ class Jogo{
         this.colocarPecaNoTabuleiro(p,px,py);
       }
       this.log.adicionar(this.turno, m,this.jogadorAtivo);
+      this.replay.salvar();
     }else{
       this.irParafim();
     }

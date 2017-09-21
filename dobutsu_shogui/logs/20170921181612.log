@@ -1,0 +1,18 @@
+turno,equipe,estrategia,id,x inicial,y inicial, x final, y final, peca, movimento
+0,aleatória,autobots,1,1,0,2,1,leo,mover
+1,aleatória,autobots,2,0,3,0,2,gir,mover
+2,aleatória,autobots,1,0,0,1,0,gir,mover
+3,aleatória,autobots,2,1,3,0,3,leo,mover
+4,aleatória,autobots,1,1,1,1,2,pin,mover
+5,aleatória,autobots,2,2,3,1,2,ele,mover
+6,aleatória,autobots,1,2,1,2,2,leo,mover
+7,aleatória,autobots,2,1,2,1,1,pin,colocar
+8,aleatória,autobots,1,2,0,1,1,ele,mover
+9,aleatória,autobots,2,0,2,0,1,gir,mover
+10,aleatória,autobots,1,1,1,2,0,ele,mover
+11,aleatória,autobots,2,0,1,1,1,gir,mover
+12,aleatória,autobots,1,2,0,1,1,ele,mover
+13,aleatória,autobots,2,1,2,2,1,ele,mover
+14,aleatória,autobots,1,1,1,1,2,pin,colocar
+15,aleatória,autobots,2,2,1,1,0,ele,mover
+16,aleatória,autobots,1,1,2,1,3,pin,mover

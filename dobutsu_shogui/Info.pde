@@ -33,7 +33,7 @@ class Info{
         pecasMinhas.add(p);
         if(p.getNome().equals("leo")){
           meuLeao = p;
-        }
+        } 
       }else{
         pecasOponente.add(p);
       }
@@ -46,29 +46,34 @@ class Info{
     }
     
     
-    
-    
     for(Peca p :pecasMinhas){           
       int[][] matriz = p.getMatrizDeMovimento();
       for(int i =0;i<matriz.length;i++){
         int x = p.getX()+matriz[i][0];
         int y = p.getY()+matriz[i][1];
+        
+        //somente movimentos dentro do tabuleiro.
         if( !(x < 0 || x > this.tabuleiro.getLargura()-1 || y< 0 || y > this.tabuleiro.getAltura()-1)){
           Casa c = this.tabuleiro.getCasa(x,y);
           Peca destino = c.getPeca();
           
+          
+          
           //se for o leao, não pode mover onde o oponente esta atacando!
           if(p.getNome().equals("leo")){
-              if(destino != null && !matrizDeAtaque[x][y] && destino.getDono() != p.getDono()){
+              
+            if(destino != null && !matrizDeAtaque[x][y] && destino.getDono() != p.getDono()){
                 Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
                 this.movimentos.add(m);
               }
+              
               if(destino == null && !matrizDeAtaque[x][y]){
                   Movimento m = new Movimento(p,x,y,"mover",this.jogadorAtual);
                   this.movimentos.add(m);
               }
           }else{
             
+            //se o meu leão está sendo atacado, posso matar os atacantes.
             if(this.meuLeaoEstaSendoAtacado){
               for(Peca atl : atacandoLeao){
                   if(destino != null && atl.getId() == destino.getId() && destino.getDono() != p.getDono()){

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 //classe abstrata responsável por definir aquilo que é obrigatório ao definir uma estratégia.
 abstract class Estrategia{
   
