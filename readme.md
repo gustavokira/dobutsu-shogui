@@ -10,9 +10,7 @@ Galo
 Classes
 
 Estrategia
-A classe Estrategia tem somente um método "escolherMovimento" que recebe dois argumentos: o estado atual do jogo e uma lista de movimentos possíveis.
-
-
+A classe Estrategia é uma classe abstrata e tem somente um método chamado "escolherMovimento" que recebe dois argumentos: o estado atual do jogo e uma lista de movimentos possíveis.
 
 	public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos);
 
@@ -25,14 +23,11 @@ Participação nesta liga é obrigatória, salvo indicado pelo professor.
 2) info2 contra bots
 Participação desta liga não é obrigatória.
 
-
-
 Regras:
 1) Toda versão de estratégia que vencer cada etapa deve ser disponibilizada para todos.
 2) Recomenda-se o versionamento das estratégias.
 3) Recomenda-se buscar ideias para estratégias com outras pessoas pessoas além do professor da disciplina.
 4) Recomenda-se que as equipes troquem informações sobre as estratégias.
-
 
 1) Uma estratégia deve retornar o movimento escolhido a cada turno. Cada resposta deve ser dada em menos de 4000ms. 
 
