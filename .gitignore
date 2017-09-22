@@ -1,3 +1,2 @@
 dobutsu_shogui/replays/*
-
-*.log
+dobutsu_shogui/logs/*.log
