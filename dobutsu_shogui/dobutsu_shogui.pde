@@ -5,7 +5,7 @@ public void setup(){
   //torneio();
   
   Estrategia e1 = new EstrategiaAleatoria();
-  Estrategia e2 = new EstrategiaTeste();
+  Estrategia e2 = new EstrategiaGirafaAntesDeTudo();
   jogo = new Jogo(e1,e2);
   jogo.salvarReplay();
   jogo.salvarLog();
@@ -26,12 +26,12 @@ public void draw(){
 public void torneio(){
   Torneio torneio;
   Estrategia e1 = new EstrategiaAleatoria();
-  Estrategia e2 = new EstrategiaAleatoria();
-  Estrategia e3 = new EstrategiaAleatoria();
-  torneio = new Torneio(5);
+  Estrategia e2 = new EstrategiaGirafaAntesDeTudo();
+  //Estrategia e3 = new EstrategiaAleatoria();
+  torneio = new Torneio(50);
   torneio.adicionarEstrategia(e1);
   torneio.adicionarEstrategia(e2);
-  torneio.adicionarEstrategia(e3);
+  //torneio.adicionarEstrategia(e3);
   torneio.rodar();
   exit();
 }

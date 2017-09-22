@@ -83,8 +83,8 @@ class Jogo{
       this.log.adicionar(this.turno, m,this.jogadorAtivo);
       this.replay.salvarSeEstiverLigado();
     }else{
-      this.irParafim();
       this.ganhador = this.getOutroJogador(this.jogadorAtivo);
+      this.irParafim();
       return false;
     }
     
@@ -104,6 +104,8 @@ class Jogo{
   private void irParafim(){
      this.estado = 2;
      if(this.log.estaLigado()){
+       
+       this.log.definirIdDoGanhador(this.ganhador.getId());
        this.log.salvar();
      }
      this.replay.salvarSeEstiverLigado();

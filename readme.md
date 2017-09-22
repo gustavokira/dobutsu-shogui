@@ -18,6 +18,15 @@ Toda estratégia deve ser uma classe derivada da classe Estrategia e reimplement
 Toda estratégia deve ter um nome.
 Toda estratégia deve ter uma equipe responsável.
 
+Jogo
+
+pasta replays:
+Onde ficam salvos os replays. O nome da pasta é o timestamp do começo do jogo.
+
+pasta logs:
+Onde ficam salvos os logs. O nome do arquivo é o timestamp do começo do jogo.
+
+
 Modalidades:
 1) info2 contra info2
 Participação nesta liga é obrigatória, salvo indicado pelo professor.
@@ -28,13 +37,15 @@ Caso um dos bots dos parcicipantes ganhe de todos os bots inimigos.
 
 Regras:
 1) Toda versão de estratégia que vencer cada etapa deverá ser disponibilizada para todos os outros estudantes.
-2) Recomenda-se o versionamento das estratégias.
-3) Recomenda-se buscar ideias para estratégias com outras pessoas pessoas além do professor da disciplina.
-4) Recomenda-se que as equipes troquem informações sobre as estratégias a fim de vencer o verdadeiro inimigo.
 
-1) Uma estratégia deve retornar o movimento escolhido a cada turno. Cada resposta deve ser dada em menos de 4000ms. Se não responder neste tempo, o jogo encerra e a vitória é dada ao oponente.
+2) Uma estratégia deve retornar o movimento escolhido a cada turno. Cada resposta deve ser dada em menos de 4000ms. Se não responder neste tempo, o jogo encerra e a vitória é dada ao oponente.
 
-2) O uso de qualquer estratégia que explore algum tipo de "bug" será desqualificada. 
+3) O uso de qualquer estratégia que explore algum tipo de "bug" será desqualificada. 
+
+Recomendações:
+1) Recomenda-se o versionamento das estratégias.
+2) Recomenda-se buscar ideias para estratégias com outras pessoas pessoas além do professor da disciplina.
+3) Recomenda-se que as equipes troquem informações sobre as estratégias a fim de vencer o verdadeiro inimigo.
 
 Notas:
 As notas poderão ser diferentes para cada itegrante da equipe.
