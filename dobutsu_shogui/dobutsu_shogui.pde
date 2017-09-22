@@ -9,7 +9,7 @@ public void setup(){
   jogo = new Jogo(e1,e2);
   jogo.salvarReplay();
   jogo.salvarLog();
-  jogo.velocidadeNormal();
+  jogo.velocidadeRapida();
   
    gui = new Gui(jogo);
 }

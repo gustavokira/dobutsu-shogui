@@ -269,6 +269,9 @@ class Jogo{
     this.velocidade = 1000;
   }
   public void velocidadeRapida(){
+    this.velocidade = 500;
+  }
+  public void velocidadeMuitoRapida(){
     this.velocidade = 10;
   }
   
