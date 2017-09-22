@@ -3,11 +3,13 @@ class Jogo{
   private FabricaPecaCore fabricaPeca;
   private Log log;
   private Replay replay;
+  private int velocidade;
   
   private TabuleiroCore tabuleiro;
   private JogadorCore jogador1;
   private JogadorCore jogador2;
   private JogadorCore jogadorAtivo;
+  private JogadorCore ganhador;
   private int turno;
   private Info info;
   
@@ -27,6 +29,8 @@ class Jogo{
     
     this.criarPecasJogador1();
     this.criarPecasJogador2();
+    
+    this.velocidadeNormal();
     
     this.estado = 1;
     
@@ -51,7 +55,7 @@ class Jogo{
     return null;
   }
   
-  public void turno(){
+  public boolean turno(){
     this.criarInfo();
     
     if(this.info.getMovimentos().size()>0){
@@ -77,26 +81,32 @@ class Jogo{
         this.colocarPecaNoTabuleiro(p,px,py);
       }
       this.log.adicionar(this.turno, m,this.jogadorAtivo);
-      this.replay.salvar();
+      this.replay.salvarSeEstiverLigado();
     }else{
       this.irParafim();
+      this.ganhador = this.getOutroJogador(this.jogadorAtivo);
+      return false;
     }
     
     
     JogadorCore ganhador = this.verificarLeoesNosFins();
-    
     if(ganhador != null){
+      this.ganhador = ganhador;
       this.irParafim();
+      return false;
     }
     
     this.trocarJogadorAtivo();
     this.turno++;
-    
+    return true;
   }
   
   private void irParafim(){
      this.estado = 2;
-     this.log.salvar();
+     if(this.log.estaLigado()){
+       this.log.salvar();
+     }
+     this.replay.salvarSeEstiverLigado();
   }
   
   private JogadorCore verificarLeoesNosFins(){
@@ -209,14 +219,55 @@ class Jogo{
     this.tabuleiro.addPeca(p,1,2);
   }
   
-  public void desenhar(){
-    tabuleiro.desenhar();
-  }
   public int getTurno(){
     return this.turno;
   }
+  
+  public boolean temGanhador(){
+    if(this.ganhador != null){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
+  public JogadorCore getGanhador(){
+    return this.ganhador;
+  }
+  
+  private JogadorCore getOutroJogador(JogadorCore j){
+    if(j.getId() == this.jogador1.getId()){
+      return this.jogador2;
+    }else{
+      return this.jogador1;
+    }
+  } 
+  
   public boolean continuar(){
     if(this.estado == 1){ return true;}
     else return false;
   }
+  
+  public void salvarReplay(){
+    this.replay.ligar();
+  }
+  
+  public void salvarLog(){
+    this.log.ligar();
+  }
+  
+  public int getVelocidade(){
+    return this.velocidade;
+  }
+  
+  public void velocidadeDevagar(){
+    this.velocidade = 5000;
+  }
+  public void velocidadeNormal(){
+    this.velocidade = 1000;
+  }
+  public void velocidadeRapida(){
+    this.velocidade = 10;
+  }
+  
 }

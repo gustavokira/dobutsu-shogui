@@ -78,11 +78,5 @@ class TabuleiroCore{
       return pecas;
   }
   
-  public void desenhar(){
-    for(int i =0;i<this.largura;i++){
-      for(int j =0;j<this.altura;j++){
-          this.casas[i][j].desenhar(i*80,j*80);
-        }
-    }
-  }
+  
 }

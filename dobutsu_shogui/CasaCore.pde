@@ -36,12 +36,4 @@ class CasaCore{
   public PecaCore getPeca(){
     return this.peca;
   }
-  
-  public void desenhar(int offx, int offy){
-    rect(offx+this.x,offy+this.y,80,80);
-    if(this.peca != null){
-      this.peca.desenhar(offx,offy);
-    }
-    
-  }
 }

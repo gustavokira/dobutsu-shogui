@@ -7,7 +7,7 @@ Girafa
 Pintinho
 Galo
 
-Classes
+Classes:
 
 Estrategia
 A classe Estrategia é uma classe abstrata e tem somente um método chamado "escolherMovimento" que recebe dois argumentos: o estado atual do jogo e uma lista de movimentos possíveis.

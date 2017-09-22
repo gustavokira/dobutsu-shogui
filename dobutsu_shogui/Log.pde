@@ -1,14 +1,21 @@
+import java.util.*; 
+
 class Log{
   private String pasta;
   private ArrayList<String>entradas;
   private PrintWriter output;
   private String header;
   private String timestamp;
+  private boolean ligado;
+  
   public Log(){
     this.pasta = "logs";
     this.entradas = new ArrayList<String>();
     this.header = "turno,equipe,estrategia,id,x inicial,y inicial, x final, y final, peca, movimento";
-    this.timestamp = this.setTimeStamp();
+    Date d = new Date(); 
+    this.timestamp = d.getTime()+"";
+    this.ligado = false;
+    
   }
   public void adicionar(int turno,Movimento m,JogadorCore j){
     String entrada= turno+","+j.getNomeEquipe()+","+j.getNomeEstrategia()+","+m.toString();
@@ -28,47 +35,11 @@ class Log{
      return this.timestamp;
    }
   
-  private String setTimeStamp(){
-    int dia = day(); 
-    int mes = month();
-    int ano = year();   
-    int segundos = second();  // Values from 0 - 59
-    int minutos = minute();  // Values from 0 - 59
-    int hora = hour();    // Values from 0 - 23
-    
-    String timestamp = ""+ano;
-    
-    if(mes < 10){
-      timestamp+="0"+mes;
-    }else{
-      timestamp+=mes;
-    }
-    
-    if(dia < 10){
-      timestamp+="0"+dia;
-    }else{
-      timestamp+=dia;
-    }
-    
-    if(hora < 10){
-      timestamp+="0"+hora;
-    }else{
-      timestamp+=hora;
-    }
-    
-    if(minutos < 10){
-      timestamp+="0"+minutos;
-    }else{
-      timestamp+=minutos;
-    }
-    
-    if(segundos < 10){
-      timestamp+="0"+segundos;
-    }else{
-      timestamp+=segundos;
-    }
-    
-    return timestamp;
-  }
+  public void ligar(){
+     this.ligado = true;
+   }
+   public boolean estaLigado(){
+     return this.ligado;
+   }
   
 }

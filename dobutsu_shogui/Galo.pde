@@ -2,7 +2,6 @@ class Galo extends PecaCore{
 public Galo(int id, int d){
     super(id, d);
     this.nome = "gal";
-    this.img = loadImage("galo.jpg");
   }
   
   public PecaCore transformar(){

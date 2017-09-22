@@ -2,7 +2,6 @@ class Pintinho extends PecaCore{
   public Pintinho(int id, int d){
     super(id, d);
     this.nome = "pin";
-    this.img = loadImage("pintinho.jpg");
   }
   
   public PecaCore transformar(){

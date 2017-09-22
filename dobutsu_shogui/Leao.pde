@@ -2,9 +2,7 @@ class Leao extends PecaCore{
   
   public Leao(int id, int d){
     super(id, d);
-    this.nome = "leo";
-    this.img = loadImage("leao.jpg");
-    
+    this.nome = "leo";    
   }
   
   public int[][] getMatrizDeMovimento(){

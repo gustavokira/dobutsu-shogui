@@ -3,11 +3,8 @@ class PecaCore{
   private int id;
   private int x;
   private int y;
-  private int largura;
-  private int altura;
   protected int direcao;
     
-  protected PImage img;
   protected String nome;
   protected JogadorCore dono;
   
@@ -17,8 +14,6 @@ class PecaCore{
   public PecaCore(int id, int d){
     this.direcao = d;
     this.id = id;
-    this.largura = 80;
-    this.altura = 80;
   }
   
   public void mudarDirecao(){
@@ -44,10 +39,6 @@ class PecaCore{
     this.y = y;
   } 
   
-  public PImage getImage(){
-    return this.img;
-  }
-  
   public void setDono(JogadorCore j){
     this.dono = j;
   }
@@ -66,18 +57,9 @@ class PecaCore{
   public int[][] getMatrizDeMovimento(){
     return null;
   }
-    
-  public void desenhar(int offx, int offy){
-    if(this.direcao == PecaCore.BAIXO){
-      pushMatrix();
-      translate(offx+this.largura/2,offy+this.altura/2);
-      rotate(PI);
-      image(this.img, -this.largura/2, -this.altura/2,this.largura, this.altura);
-      popMatrix();
-    }else{
-        image(this.img, offx, offy,this.largura, this.altura);
-    }
-
+  
+  public int getDirecao(){
+    return this.direcao;
   }
-
+    
 }

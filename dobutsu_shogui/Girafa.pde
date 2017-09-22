@@ -2,7 +2,6 @@ class Girafa extends PecaCore{
   public Girafa(int id, int d){
     super(id, d);
     this.nome = "gir";
-    this.img = loadImage("girafa.jpg");
   }
   
   public int[][] getMatrizDeMovimento(){
