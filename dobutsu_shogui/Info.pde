@@ -9,7 +9,7 @@ class Info{
   
   //para criar um objeto Info, é preciso ter o estado atual do jogo e quem é o jogador que deve fazer um movimento.
   public Info(Jogo jogo, JogadorCore j){
-    idDoJogadorAtual = j.getId();
+    this.idDoJogadorAtual = j.getId();
     this.jogador1 = new Jogador(jogo.getJogador1());
     this.jogador2 = new Jogador(jogo.getJogador2());
     
@@ -120,7 +120,7 @@ class Info{
     return this.tabuleiro;
   }
   
-  public ArrayList<Peca> leaoEmPerigo(ArrayList<Peca>pecas, Peca leao){
+  private ArrayList<Peca> leaoEmPerigo(ArrayList<Peca>pecas, Peca leao){
     ArrayList<Peca>atacantes = new ArrayList<Peca>();
     for(Peca p: pecas){
       int[][] matriz = p.getMatrizDeMovimento();
@@ -136,7 +136,7 @@ class Info{
    return atacantes;
   }
   
-  public boolean[][] criarMatrizDeAtaque(ArrayList<Peca>pecas){
+  private boolean[][] criarMatrizDeAtaque(ArrayList<Peca>pecas){
     boolean[][] matrizDeAtaque = new boolean[this.tabuleiro.getLargura()][this.tabuleiro.getAltura()];
     for(Peca p: pecas){
       int[][] matriz = p.getMatrizDeMovimento();
@@ -170,8 +170,5 @@ class Info{
     }else{
       return this.jogador2;
     }
-  }
-  public boolean meuLeaoEstaSendoAtacado(){
-    return this.meuLeaoEstaSendoAtacado;
   }
 }
