@@ -25,6 +25,7 @@ class Torneio{
           while(this.jogo.continuar()){
             this.jogo.turno();
           }
+          println("terminou");
         }
         
       }

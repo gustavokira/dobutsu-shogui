@@ -11,6 +11,7 @@ class JogadorCore{
     this.pecasNaMao = new ArrayList<PecaCore>();
     this.estrategia = e;
     this.id = id;
+
   }
     
   public Movimento jogar(Info info){
@@ -48,6 +49,10 @@ class JogadorCore{
   }
   public String getNomeEstrategia(){
     return this.estrategia.getEquipe();
+  }
+  
+  public void terminar(int idGanhador){
+    this.estrategia.terminar(idGanhador);
   }
   
 }

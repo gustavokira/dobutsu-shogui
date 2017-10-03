@@ -107,6 +107,8 @@ class Jogo{
        
        this.log.definirIdDoGanhador(this.ganhador.getId());
        this.log.salvar();
+       this.jogador1.terminar(this.ganhador.getId());
+       this.jogador2.terminar(this.ganhador.getId());
      }
      this.replay.salvarSeEstiverLigado();
   }

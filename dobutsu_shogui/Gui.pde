@@ -1,23 +1,37 @@
-class Gui{
+abstract class Gui{
+  private Jogo jogo;
+  
+  public Gui(Jogo jogo){
+    this.jogo = jogo;
+  }
+  
+  public abstract void desenhar();
+}
+
+class GuiProto extends Gui{
   private int casa;
   private int painel;
+  
   private TabuleiroCore tabuleiro;
   private Jogo jogo;
+  
   private ArrayList<PecaCore> pecas;
   private ArrayList<PecaCore> pecasNaMao1;
   private ArrayList<PecaCore> pecasNaMao2;
+  
   private Estrategia e1;
   private Estrategia e2;
   
   private PFont fontGrande;
   private PFont fontPequena;
   
-  public Gui(Jogo jogo){
+  public GuiProto(Jogo jogo){
+    super(jogo);
+    
     this.casa = 100;
     this.painel = 100;
     this.e1 = jogo.getJogador1().getEstrategia();
     this.e2 = jogo.getJogador2().getEstrategia();
-    this.jogo = jogo;
     this.tabuleiro = jogo.getTabuleiro();
     this.pecasNaMao1 = jogo.getJogador1().getPecasNaMao();
     this.pecasNaMao2 = jogo.getJogador2().getPecasNaMao();

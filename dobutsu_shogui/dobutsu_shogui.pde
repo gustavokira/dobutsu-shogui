@@ -4,14 +4,17 @@ public void setup(){
   size(401,600);
   //torneio();
   
-  Estrategia e1 = new EstrategiaAleatoria();
-  Estrategia e2 = new EstrategiaGirafaAntesDeTudo();
+  Estrategia e1 = new EstrategiaComMemoriaPropria();
+  Estrategia e2 = new EstrategiaAleatoria();
+  //Estrategia e2 = new EstrategiaComMemoriaPropria();
   jogo = new Jogo(e1,e2);
+  jogo.setLog(new LogProcessing());
+  jogo.setReplay(new ReplayProcessing());
   jogo.salvarReplay();
   jogo.salvarLog();
-  jogo.velocidadeRapida();
+  jogo.velocidadeMuitoRapida();
   
-   gui = new Gui(jogo);
+  gui = new GuiProto(jogo);
 }
 
 public void draw(){
@@ -23,15 +26,15 @@ public void draw(){
    }
 }
 
-public void torneio(){
-  Torneio torneio;
-  Estrategia e1 = new EstrategiaAleatoria();
-  Estrategia e2 = new EstrategiaGirafaAntesDeTudo();
-  //Estrategia e3 = new EstrategiaAleatoria();
-  torneio = new Torneio(50);
-  torneio.adicionarEstrategia(e1);
-  torneio.adicionarEstrategia(e2);
-  //torneio.adicionarEstrategia(e3);
-  torneio.rodar();
-  exit();
-}
+//public void torneio(){
+//  Torneio torneio;
+//  Estrategia e1 = new EstrategiaComMemoriaPropria();
+//  Estrategia e2 = new EstrategiaComMemoriaPropria();
+//  //Estrategia e3 = new EstrategiaAleatoria();
+//  torneio = new Torneio(5);
+//  torneio.adicionarEstrategia(e1);
+//  torneio.adicionarEstrategia(e2);
+//  //torneio.adicionarEstrategia(e3);
+//  torneio.rodar();
+//  exit();
+//}
