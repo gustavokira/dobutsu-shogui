@@ -1,7 +1,8 @@
 import java.util.*; 
 
 class LogProcessing extends Log{
-  
+    private PrintWriter output;
+
   public void salvar(){
     String arquivo = this.timestamp+".log";
     this.output = createWriter(this.pasta+"/"+arquivo); 

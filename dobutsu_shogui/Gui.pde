@@ -1,5 +1,5 @@
 abstract class Gui{
-  private Jogo jogo;
+  protected Jogo jogo;
   
   public Gui(Jogo jogo){
     this.jogo = jogo;
@@ -13,7 +13,6 @@ class GuiProto extends Gui{
   private int painel;
   
   private TabuleiroCore tabuleiro;
-  private Jogo jogo;
   
   private ArrayList<PecaCore> pecas;
   private ArrayList<PecaCore> pecasNaMao1;
@@ -41,10 +40,10 @@ class GuiProto extends Gui{
   }
   
   public void desenhar(){
-   
-   this.desenharIdentificacao(jogo.getJogador1().getId(),e1);
+    
+   this.desenharIdentificacao(this.jogo.getJogador1().getId(),e1);
    translate(0,5*this.casa);
-   this.desenharIdentificacao(jogo.getJogador2().getId(),e2);
+   this.desenharIdentificacao(this.jogo.getJogador2().getId(),e2);
    translate(0,-5*this.casa);
    this.desenharTabuleiro();
    this.pecas = this.tabuleiro.getPecas();
@@ -69,8 +68,8 @@ class GuiProto extends Gui{
    
    
    rect(3*this.casa,0,this.casa,6*this.casa);
-   this.pecasNaMao1 = jogo.getJogador1().getPecasNaMao();
-   this.pecasNaMao2 = jogo.getJogador2().getPecasNaMao();
+   this.pecasNaMao1 = this.jogo.getJogador1().getPecasNaMao();
+   this.pecasNaMao2 = this.jogo.getJogador2().getPecasNaMao();
    for(int i =0;i<this.pecasNaMao1.size();i++){
      PecaCore p = this.pecasNaMao1.get(i);
     if(p.getClass() == Leao.class){

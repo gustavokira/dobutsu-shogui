@@ -9,11 +9,14 @@ public void setup(){
   //Estrategia e2 = new EstrategiaComMemoriaPropria();
   jogo = new Jogo(e1,e2);
   jogo.setLog(new LogProcessing());
-  jogo.setReplay(new ReplayProcessing());
+  Log l = new LogProcessing();
+  Replay r = new ReplayProcessing(l.getTimeStamp());
+  jogo.setReplay(r);
   jogo.salvarReplay();
   jogo.salvarLog();
   jogo.velocidadeMuitoRapida();
   
+  jogo.iniciar();
   gui = new GuiProto(jogo);
 }
 
@@ -21,6 +24,7 @@ public void draw(){
   gui.desenhar();
   
   if(jogo.continuar()){
+    println(jogo.getTurno());
      jogo.turno();
      delay(jogo.getVelocidade());
    }
