@@ -12,9 +12,6 @@ public void draw(){
      jogo.turno();
      delay(jogo.getVelocidade());
    }
-   //else{
-   //  setGame();
-   //}
 }
 
 public void setGame(){
