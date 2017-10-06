@@ -49,19 +49,19 @@ A classe info tem 4 métodos públicos importantes:
 ### Tabuleiro
 Classe responsável por representar o tabuleiro.
 
-	#### public Casa getCasa(int x, int y)
+#### public Casa getCasa(int x, int y)
 	retorna um objeto do tipo de Casa dado o seu x e o seu y.
 	
-	#### public int getLargura()
+#### public int getLargura()
 	retorna um inteiro que representa a quantidade de colunas existentes no tabuleiro.
 	
-	#### public int getAltura()
+#### public int getAltura()
 	retorna um inteiro que representa a quantidade de linhas existentes no tabuleiro.
 	
-	#### public ArrayList<Peca> getPecas()
+#### public ArrayList<Peca> getPecas()
 	retorna um ArrayList com todas as Pecas existentes no tabuleiro. Não inclui peças na "mão" dos jogadores. 
 	
-	#### public ArrayList<Casa> getCasasVazias()
+#### public ArrayList<Casa> getCasasVazias()
 	retorna um ArrayList com todas as Casas Vazias dentro do tabuleiro.
 
 pasta replays:
