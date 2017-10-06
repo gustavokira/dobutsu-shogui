@@ -13,7 +13,7 @@ public void setup(){
 }
 
 public void draw(){
-  //gui.desenhar();
+  gui.desenhar();
   
   if(jogo.continuar()){
      jogo.turno();
@@ -50,9 +50,11 @@ public void setGame(){
   Log l = new LogProcessing();
   Replay r = new ReplayProcessing(l.getTimeStamp());
   jogo.setReplay(r);
+  
   //jogo.salvarReplay();
   jogo.salvarLog();
-  jogo.velocidadeMuitoRapida();
+  
+  jogo.velocidadeRapida();
   
   jogo.iniciar();
   gui = new GuiProto(jogo);

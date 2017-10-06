@@ -1,4 +1,4 @@
-Dobutsu Shogui
+# Dobutsu Shogui
 
 Peças:
 Leão
@@ -7,18 +7,41 @@ Girafa
 Pintinho
 Galo
 
-Classes:
+## Classes:
 
-Estrategia
-A classe Estrategia é uma classe abstrata e tem somente um método chamado "escolherMovimento" que recebe dois argumentos: o estado atual do jogo e uma lista de movimentos possíveis.
-
+### Estrategia
+A classe Estrategia é uma classe abstrata e tem um método chamado "escolherMovimento" que recebe dois argumentos: o estado atual do jogo e uma lista de movimentos possíveis.
+```
 	public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos);
+```
 
 Toda estratégia deve ser uma classe derivada da classe Estrategia e reimplementar o método escolherMovimento.
-Toda estratégia deve ter um nome.
-Toda estratégia deve ter uma equipe responsável.
+Toda estratégia deve ter um nome, implementada pelo retorno do método "getNome".
+Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do método "getEquipe".
 
-Jogo
+### Jogador
+  #### public int getId();
+  retorna um número inteiro que representa o id do jogador no jogo atual. 
+  Se for 1, o jogador está na parte superior do tabuleiro e começa o jogo. Caso seja 2, o jogador esta na parte inferior do tabuleiro.
+   
+  public ArrayList<Peca> getPecasNaMao();
+  retorna um ArrayList com objetos do tipo Peca que representam as peças na mão do jogador.
+
+### Info
+A classe info tem 4 métodos públicos importantes:
+  
+  public Tabuleiro getTabuleiro();
+  retorna um objeto do tipo Tabuleiro para uso.
+  
+  public Jogador getOponente();
+  retorna um objeto do tipo Jogador que representa o oponente para uso.
+  
+  public ArrayList<Movimento> getMovimentos();
+  retorna um ArrayList com objetos do tipo Movimento com os movimentos possíveis
+  
+  public Jogador getEu();
+  retorna um objeto do tipo Jogador que representa a si jogador para uso.
+  
 
 pasta replays:
 Onde ficam salvos os replays. O nome da pasta é o timestamp do começo do jogo.
