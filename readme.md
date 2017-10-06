@@ -50,19 +50,19 @@ A classe info tem 4 métodos públicos importantes:
 Classe responsável por representar o tabuleiro.
 
 #### public Casa getCasa(int x, int y)
-	retorna um objeto do tipo de Casa dado o seu x e o seu y.
+retorna um objeto do tipo de Casa dado o seu x e o seu y.
 	
 #### public int getLargura()
-	retorna um inteiro que representa a quantidade de colunas existentes no tabuleiro.
+retorna um inteiro que representa a quantidade de colunas existentes no tabuleiro.
 	
 #### public int getAltura()
-	retorna um inteiro que representa a quantidade de linhas existentes no tabuleiro.
+retorna um inteiro que representa a quantidade de linhas existentes no tabuleiro.
 	
 #### public ArrayList<Peca> getPecas()
-	retorna um ArrayList com todas as Pecas existentes no tabuleiro. Não inclui peças na "mão" dos jogadores. 
+retorna um ArrayList com todas as Pecas existentes no tabuleiro. Não inclui peças na "mão" dos jogadores. 
 	
 #### public ArrayList<Casa> getCasasVazias()
-	retorna um ArrayList com todas as Casas Vazias dentro do tabuleiro.
+retorna um ArrayList com todas as Casas Vazias dentro do tabuleiro.
 
 pasta replays:
 Onde ficam salvos os replays. O nome da pasta é o timestamp do começo do jogo.
@@ -70,6 +70,34 @@ Onde ficam salvos os replays. O nome da pasta é o timestamp do começo do jogo.
 pasta logs:
 Onde ficam salvos os logs. O nome do arquivo é o timestamp do começo do jogo.
 
+### Casa
+
+#### public int getX();
+retorna um inteiro que representa a posição x da casa.
+  
+#### public int getY();
+retorna um inteiro que representa a posição y da casa.
+  
+#### public boolean temPeca();
+retorna verdadeiro se existe uma peça nesta casa.
+   
+#### public Peca getPeca();
+retorna um objeto do tipo Peca que representa a peça nesta casa.
+
+#### Peca
+#### public int getX()
+retorna um inteiro que representa a posição x da peça.
+  
+#### public int getY()
+retorna um inteiro que representa a posição y da peça.
+  
+#### public int getId()
+   
+#### public Jogador getDono()
+  
+#### public String getNome()
+
+#### public int[][] getMatrizDeMovimento()
 
 ## Modalidades:
 1) info2 contra info2

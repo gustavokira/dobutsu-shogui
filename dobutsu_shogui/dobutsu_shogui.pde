@@ -1,7 +1,7 @@
 Jogo jogo;
 Gui gui;
 int c = 0;
-int max = 200;
+int max = 100;
 
 int jogador1Pontos = 0;
 int jogador2Pontos = 0;
@@ -54,7 +54,7 @@ public void setGame(){
   //jogo.salvarReplay();
   jogo.salvarLog();
   
-  jogo.velocidadeRapida();
+  jogo.velocidadeMuitoRapida();
   
   jogo.iniciar();
   gui = new GuiProto(jogo);
