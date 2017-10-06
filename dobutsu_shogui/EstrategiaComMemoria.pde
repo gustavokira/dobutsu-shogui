@@ -8,7 +8,7 @@ class EstrategiaComMemoriaPropria extends Estrategia{
   HashMap<String,JSONObject> memoria;
   int meuId;
   int turno;
-  String arquivo = "estrategia/memoria-propria.json";
+  String arquivo = "estrategia-data/memoria-propria.json";
   
   public EstrategiaComMemoriaPropria(){
     super();
