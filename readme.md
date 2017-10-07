@@ -1,5 +1,7 @@
 # Dobutsu Shogui
 
+
+
 Peças:
 Leão
 Elefante
@@ -92,12 +94,50 @@ retorna um inteiro que representa a posição x da peça.
 retorna um inteiro que representa a posição y da peça.
   
 #### public int getId()
-   
+retorna o id da peça. Cada peça tem um id único.
+   
 #### public Jogador getDono()
-  
+retorna um objeto jogador que representa o dono da peça.
+
+  ```
+  Tabuleiro t = info.getTabuleiro();
+  Casa c = t.getCasa(0,0);
+  Peca p = c.getPeca();
+  Jogador j = p.getDono();
+  //o jogador j será o primeiro jogador no começo do jogo.
+  ```
+  
 #### public String getNome()
+retorna o nome da peça.
+  ```
+  Tabuleiro t = info.getTabuleiro();
+  Casa c = t.getCasa(0,0);
+  Peca p = c.getPeca();
+  String nome = p.getNome();
+  println(nome);
+  //deverá ser impresso o nome "gir" de girafa.
+  ```
 
 #### public int[][] getMatrizDeMovimento()
+retorna uma matriz 3x3 que representa os movimentos de uma peça.
+
+A matriz abaixo representa os movimentos do pintinho.
+[0][1][0]
+[0][0][0]
+[0][0][0]
+
+A matriz abaixo representa os movimentos do leão.
+[1][1][1]
+[1][0][1]
+[1][1][1]
+
+A matriz abaixo representa os movimentos da girafa.
+[1][0][1]
+[0][0][0]
+[1][0][1]
+
+
+
 
 ## Modalidades:
 1) info2 contra info2
