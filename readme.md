@@ -122,20 +122,24 @@ retorna o nome da peça.
 retorna uma matriz 3x3 que representa os movimentos de uma peça.
 
 A matriz abaixo representa os movimentos do pintinho.
+```
 [0][1][0]
 [0][0][0]
 [0][0][0]
+```
 
 A matriz abaixo representa os movimentos do leão.
+```
 [1][1][1]
 [1][0][1]
 [1][1][1]
-
+```
 A matriz abaixo representa os movimentos da girafa.
+```
 [1][0][1]
 [0][0][0]
 [1][0][1]
-
+```
 
 
 
