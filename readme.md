@@ -26,8 +26,15 @@ Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do 
   #### public int getId()
   retorna um número inteiro que representa o id do jogador no jogo atual. 
   Se for 1, o jogador está na parte superior do tabuleiro e começa o jogo. Caso seja 2, o jogador esta na parte inferior do tabuleiro.
-   
-   
+  ```
+  Jogador eu = info.getEu();
+  int i = eu.getId();
+  if(i == 1){
+  	println("estou jogando em cima");
+  }else{
+  	println("estou jogando em baixo");
+  }
+  ```
    
   #### public ArrayList<Peca> getPecasNaMao();
   retorna um ArrayList com objetos do tipo Peca que representam as peças na mão do jogador.
@@ -48,13 +55,40 @@ A classe info tem 4 métodos públicos importantes:
   
   #### public Jogador getOponente();
   retorna um objeto do tipo Jogador que representa o oponente para uso.
-  
-  #### public ArrayList<Movimento> getMovimentos();
-  retorna um ArrayList com objetos do tipo Movimento com os movimentos possíveis
+  ```
+  Jogador opp = info.getEu();
+  int i = opp.getId();
+  if(i == 1){
+	println("opp esta jogando em cima");
+  }else{
+  	println("opp esta jogando em baixo");
+  }
+  ```
   
   #### public Jogador getEu();
   retorna um objeto do tipo Jogador que representa a si jogador para uso.
-
+  ```
+  Jogador eu = info.getEu();
+  int i = eu.getId();
+  if(i == 1){
+	println("eu estou jogando em cima");
+  }else{
+  	println("eu estou jogando em baixo");
+  }
+  ```
+  
+  #### public ArrayList<Movimento> getMovimentos();
+  retorna um ArrayList com objetos do tipo Movimento com os movimentos possíveis.
+  ```
+  Jogador eu = info.getEu();
+  int i = eu.getId();
+  if(i == 1){
+	println("eu estou jogando em cima");
+  }else{
+  	println("eu estou jogando em baixo");
+  }
+  ```
+  
 ### Tabuleiro
 Classe responsável por representar o tabuleiro.
 
@@ -84,15 +118,49 @@ Classe que representa uma casa do tabueiro.
 
 #### public int getX();
 retorna um inteiro que representa a posição x da casa.
+```
+Tabuleiro t = info.getTabuleiro();
+Casa c = t.getCasa(2,1);
+int x = c.getX();
+println(x); //será mostrado 2;
+```
   
 #### public int getY();
 retorna um inteiro que representa a posição y da casa.
+```
+Tabuleiro t = info.getTabuleiro();
+Casa c = t.getCasa(2,1);
+int y = c.getY();
+println(y); //será mostrado 1;
+```
   
 #### public boolean temPeca();
 retorna verdadeiro se existe uma peça nesta casa.
+```
+//no começo do jogo
+Tabuleiro t = info.getTabuleiro();
+Casa c1 = t.getCasa(0,0);
+boolean b1 = c1.temPeca();
+println(b1); //será mostrado true;
+
+Casa c2 = t.getCasa(0,`);
+boolean b2 = c2.temPeca();
+println(b2); //será mostrado false;
+```
+
    
 #### public Peca getPeca();
 retorna um objeto do tipo Peca que representa a peça nesta casa.
+```
+//no começo do jogo
+Tabuleiro t = info.getTabuleiro();
+Casa c1 = t.getCasa(0,0);
+boolean b1 = c1.temPeca();
+if(b1){
+   Peca p = c1.getPeca();
+   println(p.getNome()); //será mostrado gir.
+}
+```
 
 #### Peca
 #### public int getX()
