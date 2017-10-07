@@ -20,10 +20,14 @@ Toda estratégia deve ser uma classe derivada da classe Estrategia e reimplement
 Toda estratégia deve ter um nome, implementada pelo retorno do método "getNome".
 Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do método "getEquipe".
 
+
+
 ### Jogador
   #### public int getId()
   retorna um número inteiro que representa o id do jogador no jogo atual. 
   Se for 1, o jogador está na parte superior do tabuleiro e começa o jogo. Caso seja 2, o jogador esta na parte inferior do tabuleiro.
+   
+   
    
   #### public ArrayList<Peca> getPecasNaMao();
   retorna um ArrayList com objetos do tipo Peca que representam as peças na mão do jogador.
