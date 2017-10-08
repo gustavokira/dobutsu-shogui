@@ -1,4 +1,5 @@
 # Dobutsu Shogui
+jogo criado por Madoka Kitao.
 
 
 
@@ -19,8 +20,6 @@ public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos);
 Toda estratégia deve ser uma classe derivada da classe Estrategia e reimplementar o método escolherMovimento.
 Toda estratégia deve ter um nome, implementada pelo retorno do método "getNome".
 Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do método "getEquipe".
-
-
 
 ### Jogador
   #### public int getId()
@@ -94,13 +93,28 @@ Classe responsável por representar o tabuleiro.
 
 #### public Casa getCasa(int x, int y)
 retorna um objeto do tipo de Casa dado o seu x e o seu y.
+  
+  ```
+  Tabuleiro t = info.getTabuleiro();
+  Casa c = t.getCasa(0,0);
+  ```
 	
 #### public int getLargura()
 retorna um inteiro que representa a quantidade de colunas existentes no tabuleiro.
-	
+  ```
+  Tabuleiro t = info.getTabuleiro();
+  int largura = t.getLargura();
+  println(largura); //será mostrado 3;
+  ```
+  
 #### public int getAltura()
 retorna um inteiro que representa a quantidade de linhas existentes no tabuleiro.
-	
+```
+  Tabuleiro t = info.getTabuleiro();
+  int altura = t.getAltura();
+  println(altura); //será mostrado 4;
+  ```
+
 #### public ArrayList<Peca> getPecas()
 retorna um ArrayList com todas as Pecas existentes no tabuleiro. Não inclui peças na "mão" dos jogadores. 
 	
