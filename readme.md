@@ -6,8 +6,6 @@ ESte software está dividido em duas partes: core e dobutsu_shogui. O core está
 
 Outros nomes: yokai no mori, animal shogui.
 
-
-
 Peças:
 Leão
 Elefante
@@ -28,6 +26,24 @@ Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do 
 
 #### public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos)
 Este é o método que deve ser obrigatóriamente implementado para que uma estratégia funcione de fato. O jogo passa como parâmetros para o método um objeto do tipo Info e um ArrayList com objetos do tipo Movimento.
+
+### Movimento
+
+  #### public String getTipo()
+  Retorna o tipo do movimento. Os movimentos podem ser de colocar ou de mover uma peça. Colocar, significa colocar uma peça em uma posição x e y livre. Mover implica em mover uma peça de uma posição x, y para outra posição x, y.
+  
+  #### public Peca getPeca()
+  Retorna um objeto do tipo Peca ao qual o movimento condiz.
+  
+  #### public int getX()
+  Retorna a posição y de destino da peça do movimento em questão.
+  
+  #### public int getY()
+  Retorna a posição y de destino da peça do movimento em questão.
+  
+  #### public Jogador getJogador()
+  Retorna o jogador o qual pode fazer esse movimento.
+  
 
 ### Jogador
   #### public int getId()
