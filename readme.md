@@ -26,8 +26,8 @@ Toda estratégia deve ser uma classe derivada da classe Estrategia e reimplement
 Toda estratégia deve ter um nome, implementada pelo retorno do método "getNome".
 Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do método "getEquipe".
 
-  #### public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos)
-	Este é o método que deve ser obrigatóriamente implementado para que uma estratégia funcione de fato. O jogo passa como parâmetros para o método um objeto do tipo Info e um ArrayList com objetos do tipo Movimento.
+#### public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos)
+Este é o método que deve ser obrigatóriamente implementado para que uma estratégia funcione de fato. O jogo passa como parâmetros para o método um objeto do tipo Info e um ArrayList com objetos do tipo Movimento.
 
 ### Jogador
   #### public int getId()
