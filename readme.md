@@ -1,5 +1,10 @@
 # Dobutsu Shogui
-jogo criado por Madoka Kitao.
+jogo criado por Madoka Kitao. 
+
+
+ESte software está dividido em duas partes: core e dobutsu_shogui. O core está escrito em Java e o dobutsu_shogui em Processing. No core estão as classes que simulam o jogo de tabuleiro original e no dobutsu_shogui os códigos que serão editados/extendidos para a atividade.
+
+Outros nomes: yokai no mori, animal shogui.
 
 
 
