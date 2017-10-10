@@ -24,7 +24,7 @@ Toda estratégia deve ter um nome, implementada pelo retorno do método "getNome
 Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do método "getEquipe".
 
 #### public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos)
-Este é o método que deve ser obrigatóriamente implementado para que uma estratégia funcione de fato. O jogo passa como parâmetros para o método um objeto do tipo Info e um ArrayList com objetos do tipo Movimento.
+Este é o método que deve ser obrigatoriamente implementado para que uma estratégia funcione de fato. O jogo passa como parâmetros para o método um objeto do tipo Info e um ArrayList com objetos do tipo Movimento.
 ```
 //implementação da escolha aleatória
 public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
@@ -120,7 +120,8 @@ Movimento m = movimentos.get(1);
 Jogador j = m.getJogador();
 ```
   
-### Jogador
+### [Jogador](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Jogador.java)
+Classe que representa um jogador. Um jogador tem um id e peças em sua mão. Representa tanto o oponente quanto o o próprio jogador.
 
 #### public int getId()
 Retorna um número inteiro que representa o id do jogador no jogo atual. 
@@ -283,7 +284,7 @@ if(b1){
 }
 ```
 
-#### Peca
+### Peca
 #### public int getX()
 retorna um inteiro que representa a posição x da peça.
   
