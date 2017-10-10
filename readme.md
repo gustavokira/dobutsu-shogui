@@ -254,14 +254,13 @@ retorna o id da peça. Cada peça tem um id único.
    
 #### public Jogador getDono()
 retorna um objeto jogador que representa o dono da peça.
-
-  ```
-  Tabuleiro t = info.getTabuleiro();
-  Casa c = t.getCasa(0,0);
-  Peca p = c.getPeca();
-  Jogador j = p.getDono();
-  //o jogador j será o primeiro jogador no começo do jogo.
-  ```
+```
+Tabuleiro t = info.getTabuleiro();
+Casa c = t.getCasa(0,0);
+Peca p = c.getPeca();
+Jogador j = p.getDono();
+//o jogador j será o primeiro jogador no começo do jogo.
+```  
   
 #### public String getNome()
 retorna o nome da peça.
