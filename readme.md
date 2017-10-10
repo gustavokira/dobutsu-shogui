@@ -31,20 +31,47 @@ Este é o método que deve ser obrigatóriamente implementado para que uma estra
 
   #### public String getTipo()
   Retorna o tipo do movimento. Os movimentos podem ser de colocar ou de mover uma peça. Colocar, significa colocar uma peça em uma posição x e y livre. Mover implica em mover uma peça de uma posição x, y para outra posição x, y.
+  ```
+  //pega o primeiro movimento
+  Movimento m = movimentos.get(0);
+  println(m.getTipo()); //será mostrado colocar ou mover;
+  ```
   
   #### public Peca getPeca()
   Retorna um objeto do tipo Peca ao qual o movimento condiz.
+  ```
+  //pega o primeiro movimento
+  Movimento m = movimentos.get(0);
+  Peca p = m.getPeca(); // pega a peça associada ao movimento.
+  ```
   
   #### public int getX()
   Retorna a posição y de destino da peça do movimento em questão.
+  ```
+  //pega todos os movimentos um por um
+  for(int i =0;i<movimentos.size();i++){
+  	Movimento m = movimentos.get(i);
+	println(m.getX());//escreve todos os valores de x dos destinos de todas as peças que podem movimentar-se
+  }
+  ```
   
   #### public int getY()
   Retorna a posição y de destino da peça do movimento em questão.
+  ```
+  //pega o segundo movimento
+  Movimento m = movimentos.get(1);
+  println(m.getY());//escreve  o valor do y do destino da peça
+  
+  ```
   
   #### public Jogador getJogador()
   Retorna o jogador o qual pode fazer esse movimento.
+  ```
+  //pega o segundo movimento
+  Movimento m = movimentos.get(1);
+  Jogador j = m.getJogador();
+  ```
   
-
 ### Jogador
   #### public int getId()
   retorna um número inteiro que representa o id do jogador no jogo atual. 
