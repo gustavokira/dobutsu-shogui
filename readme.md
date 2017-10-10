@@ -26,7 +26,16 @@ Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do 
 
 #### public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos)
 Este é o método que deve ser obrigatóriamente implementado para que uma estratégia funcione de fato. O jogo passa como parâmetros para o método um objeto do tipo Info e um ArrayList com objetos do tipo Movimento.
-
+  ```
+  //implementação da escolha aleatória
+  public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
+    //sorteia um número randômico
+    int r = int(random(movimentos.size()));
+    //retorna o movimento com o indice sorteado.
+    return movimentos.get(r);
+  }
+  ```
+  
 ### Movimento
 
 #### public String getTipo()
@@ -105,7 +114,7 @@ A classe info tem 4 métodos públicos importantes:
   #### public Jogador getOponente();
   retorna um objeto do tipo Jogador que representa o oponente para uso.
   ```
-  Jogador opp = info.getEu();
+  Jogador opp = info.getOponente();
   int i = opp.getId();
   if(i == 1){
 	println("opp esta jogando em cima");
@@ -129,13 +138,18 @@ A classe info tem 4 métodos públicos importantes:
   #### public ArrayList<Movimento> getMovimentos();
   retorna um ArrayList com objetos do tipo Movimento com os movimentos possíveis.
   ```
-  Jogador eu = info.getEu();
-  int i = eu.getId();
-  if(i == 1){
-	println("eu estou jogando em cima");
-  }else{
-  	println("eu estou jogando em baixo");
-  }
+  //ex: contar quantos movimentos são de colocar ou de mover.
+  int mv = 0;
+  int cl = 0;
+  for(int i =0;i<movimentos.size();i++){
+  	Movimento m = movimentos.get(i);
+	String tipo = m.getTipo();
+	if(tipo.equals("mover")){
+		mv++;
+	}else{
+		cl++;
+	}
+  }
   ```
   
 ### Tabuleiro
@@ -167,15 +181,17 @@ retorna um inteiro que representa a quantidade de linhas existentes no tabuleiro
 
 #### public ArrayList<Peca> getPecas()
 retorna um ArrayList com todas as Pecas existentes no tabuleiro. Não inclui peças na "mão" dos jogadores. 
+```
+Tabuleiro t = info.getTabuleiro();
+ArrayList<Peca> pecasNoTabuleiro = t.getPecas();
+```
 	
 #### public ArrayList<Casa> getCasasVazias()
 retorna um ArrayList com todas as Casas Vazias dentro do tabuleiro.
-
-pasta replays:
-Onde ficam salvos os replays. O nome da pasta é o timestamp do começo do jogo.
-
-pasta logs:
-Onde ficam salvos os logs. O nome do arquivo é o timestamp do começo do jogo.
+```
+Tabuleiro t = info.getTabuleiro();
+ArrayList<Casa> vazias = t.getCasasVazias();
+```
 
 ### Casa
 Classe que representa uma casa do tabueiro.
@@ -207,7 +223,7 @@ Casa c1 = t.getCasa(0,0);
 boolean b1 = c1.temPeca();
 println(b1); //será mostrado true;
 
-Casa c2 = t.getCasa(0,`);
+Casa c2 = t.getCasa(0,1);
 boolean b2 = c2.temPeca();
 println(b2); //será mostrado false;
 ```
@@ -280,7 +296,13 @@ A matriz abaixo representa os movimentos da girafa.
 [0][0][0]
 [1][0][1]
 ```
+## Logs e Replays:
 
+### pasta replays:
+Onde ficam salvos os replays. O nome da pasta é o timestamp do começo do jogo.
+
+### pasta logs:
+Onde ficam salvos os logs. O nome do arquivo é o timestamp do começo do jogo.
 
 ## Modalidades:
 1) info2 contra info2
