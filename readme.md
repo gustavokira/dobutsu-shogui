@@ -14,7 +14,7 @@ Galo
 
 ## Classes
 
-### Estrategia
+### [Estrategia](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Estrategia.java)
 A classe Estrategia é uma classe abstrata e tem um método chamado "escolherMovimento" que recebe dois argumentos: o estado atual do jogo e uma lista de movimentos possíveis.
 ```
 public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos);
@@ -35,10 +35,48 @@ public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
 }
 ```
 
-### [EstrategiaAleatoria](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/EstrategiaAleatoria.pde)
+#### public String getNome()
+Método que deve ser reimplementado na classe de estratégia com o objetivo de identificar um nome para a estratégia. Ver exemplo na classe [EstrategiaAleatoria](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/EstrategiaAleatoria.pde)
+```
+public String getNome(){
+	return "aleatória";
+}
+```
 
+#### public String getEquipe()
+Método que deve ser reimplementado na classe de estratégia com o objetivo de identificar uma equipe para a estratégia, uma vez que podem existir estratégias com mesmo nome. Ver exemplo na classe [EstrategiaAleatoria](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/EstrategiaAleatoria.pde)
+```
+public String getEquipe(){
+	return "ash ketchum";
+}
+```
+
+### [EstrategiaAleatoria](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/EstrategiaAleatoria.pde)
+Estratégia base que será usada como referência de desempenho. De todas os movimentos possíveis, ela escolhe uma qualquer com uma mesma probabilidade.
+```
+// é preciso usar o extends para que exista a relação de herança com a classe Estrategia
+class EstrategiaAleatoria extends Estrategia{
+ 
+  //reimplementação do método que efetivamente executa a estratégia.
+  public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
+    int r = int(random(movimentos.size()));
+    return movimentos.get(r);
+  }
   
-### Movimento
+  //método que dá nome a estratégia
+  public String getNome(){
+    return "aleatória";
+  }
+  
+  //método que dá nome a equipe
+  public String getEquipe(){
+    return "ash ketchum";
+  }
+}
+```
+  
+### [Movimento](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Movimento.java)
+Classe responsável por abstrair um movimento que um jogador pode fazer. Um movimento é composto por uma peça, uma posição x e uma y de destino, o jogador que pode fazer esse movimento e um tipo(colocar ou mover).
 
 #### public String getTipo()
 Retorna o tipo do movimento. Os movimentos podem ser de colocar ou de mover uma peça. Colocar, significa colocar uma peça em uma posição x e y livre. Mover implica em mover uma peça de uma posição x, y para outra posição x, y.
@@ -168,19 +206,19 @@ retorna um objeto do tipo de Casa dado o seu x e o seu y.
 	
 #### public int getLargura()
 retorna um inteiro que representa a quantidade de colunas existentes no tabuleiro.
-  ```
-  Tabuleiro t = info.getTabuleiro();
-  int largura = t.getLargura();
-  println(largura); //será mostrado 3;
-  ```
+```
+Tabuleiro t = info.getTabuleiro();
+int largura = t.getLargura();
+println(largura); //será mostrado 3;
+```
   
 #### public int getAltura()
 retorna um inteiro que representa a quantidade de linhas existentes no tabuleiro.
 ```
-  Tabuleiro t = info.getTabuleiro();
-  int altura = t.getAltura();
-  println(altura); //será mostrado 4;
-  ```
+Tabuleiro t = info.getTabuleiro();
+int altura = t.getAltura();
+println(altura); //será mostrado 4;
+```
 
 #### public ArrayList<Peca> getPecas()
 retorna um ArrayList com todas as Pecas existentes no tabuleiro. Não inclui peças na "mão" dos jogadores. 
@@ -240,8 +278,8 @@ Tabuleiro t = info.getTabuleiro();
 Casa c1 = t.getCasa(0,0);
 boolean b1 = c1.temPeca();
 if(b1){
-   Peca p = c1.getPeca();
-   println(p.getNome()); //será mostrado gir.
+	Peca p = c1.getPeca();
+	println(p.getNome()); //será mostrado gir.
 }
 ```
 
