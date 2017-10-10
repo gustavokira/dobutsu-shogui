@@ -69,7 +69,7 @@ Este é o método que deve ser obrigatóriamente implementado para que uma estra
   //pega o segundo movimento
   Movimento m = movimentos.get(1);
   Jogador j = m.getJogador();
-  ```
+  ```
   
 ### Jogador
   #### public int getId()
