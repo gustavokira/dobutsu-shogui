@@ -34,6 +34,9 @@ public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
 	return movimentos.get(r);
 }
 ```
+
+### [EstrategiaAleatoria](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/EstrategiaAleatoria.pde)
+
   
 ### Movimento
 
@@ -85,21 +88,21 @@ Jogador j = m.getJogador();
 Retorna um número inteiro que representa o id do jogador no jogo atual. 
 Se for 1, o jogador está na parte superior do tabuleiro e começa o jogo. Caso seja 2, o jogador esta na parte inferior do tabuleiro.
 ```
-  Jogador eu = info.getEu();
-  int i = eu.getId();
-  if(i == 1){
-  	println("estou jogando em cima");
-  }else{
-  	println("estou jogando em baixo");
-  }
+Jogador eu = info.getEu();
+int i = eu.getId();
+if(i == 1){
+	println("estou jogando em cima");
+}else{
+	println("estou jogando em baixo");
+}
 ```
    
-  #### public ArrayList<Peca> getPecasNaMao();
-  retorna um ArrayList com objetos do tipo Peca que representam as peças na mão do jogador.
-  ```
-  Jogador j = new Jogador();
-  ArrayList<Peca> pecas = j.getPecasNaMao();
-  ```	
+#### public ArrayList<Peca> getPecasNaMao();
+retorna um ArrayList com objetos do tipo Peca que representam as peças na mão do jogador.
+```
+Jogador j = new Jogador();
+ArrayList<Peca> pecas = j.getPecasNaMao();
+```	
 
 ### Info
 A classe info tem 4 métodos públicos importantes:
