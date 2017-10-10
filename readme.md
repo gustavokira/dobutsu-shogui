@@ -29,7 +29,7 @@ Este é o método que deve ser obrigatóriamente implementado para que uma estra
 
 ### Movimento
 
-  #### public String getTipo()
+#### public String getTipo()
   Retorna o tipo do movimento. Os movimentos podem ser de colocar ou de mover uma peça. Colocar, significa colocar uma peça em uma posição x e y livre. Mover implica em mover uma peça de uma posição x, y para outra posição x, y.
   ```
   //pega o primeiro movimento
@@ -42,8 +42,8 @@ Este é o método que deve ser obrigatóriamente implementado para que uma estra
   ```
   //pega o primeiro movimento
   Movimento m = movimentos.get(0);
-  Peca p = m.getPeca(); // pega a peça associada ao movimento.
-  ```
+  Peca p = m.getPeca(); //pega a peça associada ao movimento;
+  ```
   
   #### public int getX()
   Retorna a posição y de destino da peça do movimento em questão.
@@ -53,7 +53,7 @@ Este é o método que deve ser obrigatóriamente implementado para que uma estra
   	Movimento m = movimentos.get(i);
 	println(m.getX());//escreve todos os valores de x dos destinos de todas as peças que podem movimentar-se
   }
-  ```
+  ```
   
   #### public int getY()
   Retorna a posição y de destino da peça do movimento em questão.
@@ -61,8 +61,7 @@ Este é o método que deve ser obrigatóriamente implementado para que uma estra
   //pega o segundo movimento
   Movimento m = movimentos.get(1);
   println(m.getY());//escreve  o valor do y do destino da peça
-  
-  ```
+  ```
   
   #### public Jogador getJogador()
   Retorna o jogador o qual pode fazer esse movimento.
