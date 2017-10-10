@@ -1,7 +1,6 @@
 # Dobutsu Shogui
 jogo criado por Madoka Kitao. 
 
-
 ESte software está dividido em duas partes: core e dobutsu_shogui. O core está escrito em Java e o dobutsu_shogui em Processing. No core estão as classes que simulam o jogo de tabuleiro original e no dobutsu_shogui os códigos que serão editados/extendidos para a atividade.
 
 Outros nomes: yokai no mori, animal shogui.
@@ -26,65 +25,66 @@ Toda estratégia deve ter uma equipe responsável, implementada pelo retorno do 
 
 #### public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos)
 Este é o método que deve ser obrigatóriamente implementado para que uma estratégia funcione de fato. O jogo passa como parâmetros para o método um objeto do tipo Info e um ArrayList com objetos do tipo Movimento.
-  ```
-  //implementação da escolha aleatória
-  public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
-    //sorteia um número randômico
-    int r = int(random(movimentos.size()));
-    //retorna o movimento com o indice sorteado.
-    return movimentos.get(r);
-  }
-  ```
+```
+//implementação da escolha aleatória
+public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
+	//sorteia um número randômico
+	int r = int(random(movimentos.size()));
+	//retorna o movimento com o indice sorteado.
+	return movimentos.get(r);
+}
+```
   
 ### Movimento
 
 #### public String getTipo()
-  Retorna o tipo do movimento. Os movimentos podem ser de colocar ou de mover uma peça. Colocar, significa colocar uma peça em uma posição x e y livre. Mover implica em mover uma peça de uma posição x, y para outra posição x, y.
-  ```
-  //pega o primeiro movimento
-  Movimento m = movimentos.get(0);
-  println(m.getTipo()); //será mostrado colocar ou mover;
-  ```
+Retorna o tipo do movimento. Os movimentos podem ser de colocar ou de mover uma peça. Colocar, significa colocar uma peça em uma posição x e y livre. Mover implica em mover uma peça de uma posição x, y para outra posição x, y.
+```
+//pega o primeiro movimento
+Movimento m = movimentos.get(0);
+println(m.getTipo()); //será mostrado colocar ou mover;
+```
   
-  #### public Peca getPeca()
-  Retorna um objeto do tipo Peca ao qual o movimento condiz.
-  ```
-  //pega o primeiro movimento
-  Movimento m = movimentos.get(0);
-  Peca p = m.getPeca(); //pega a peça associada ao movimento;
-  ```
+#### public Peca getPeca()
+Retorna um objeto do tipo Peca ao qual o movimento condiz.
+```
+//pega o primeiro movimento
+Movimento m = movimentos.get(0);
+Peca p = m.getPeca(); //pega a peça associada ao movimento;
+```
   
-  #### public int getX()
-  Retorna a posição y de destino da peça do movimento em questão.
-  ```
-  //pega todos os movimentos um por um
-  for(int i =0;i<movimentos.size();i++){
-  	Movimento m = movimentos.get(i);
+#### public int getX()
+Retorna a posição y de destino da peça do movimento em questão.
+```
+//pega todos os movimentos um por um
+for(int i =0;i<movimentos.size();i++){
+	Movimento m = movimentos.get(i);
 	println(m.getX());//escreve todos os valores de x dos destinos de todas as peças que podem movimentar-se
-  }
-  ```
+}
+```
   
-  #### public int getY()
-  Retorna a posição y de destino da peça do movimento em questão.
-  ```
-  //pega o segundo movimento
-  Movimento m = movimentos.get(1);
-  println(m.getY());//escreve  o valor do y do destino da peça
-  ```
+#### public int getY()
+Retorna a posição y de destino da peça do movimento em questão.
+```
+//pega o segundo movimento
+Movimento m = movimentos.get(1);
+println(m.getY());//escreve  o valor do y do destino da peça
+```
   
-  #### public Jogador getJogador()
-  Retorna o jogador o qual pode fazer esse movimento.
-  ```
-  //pega o segundo movimento
-  Movimento m = movimentos.get(1);
-  Jogador j = m.getJogador();
-  ```
+#### public Jogador getJogador()
+Retorna o jogador o qual pode fazer esse movimento.
+```
+//pega o segundo movimento
+Movimento m = movimentos.get(1);
+Jogador j = m.getJogador();
+```
   
 ### Jogador
-  #### public int getId()
-  retorna um número inteiro que representa o id do jogador no jogo atual. 
-  Se for 1, o jogador está na parte superior do tabuleiro e começa o jogo. Caso seja 2, o jogador esta na parte inferior do tabuleiro.
-  ```
+
+#### public int getId()
+Retorna um número inteiro que representa o id do jogador no jogo atual. 
+Se for 1, o jogador está na parte superior do tabuleiro e começa o jogo. Caso seja 2, o jogador esta na parte inferior do tabuleiro.
+```
   Jogador eu = info.getEu();
   int i = eu.getId();
   if(i == 1){
@@ -92,7 +92,7 @@ Este é o método que deve ser obrigatóriamente implementado para que uma estra
   }else{
   	println("estou jogando em baixo");
   }
-  ```
+```
    
   #### public ArrayList<Peca> getPecasNaMao();
   retorna um ArrayList com objetos do tipo Peca que representam as peças na mão do jogador.
@@ -264,14 +264,14 @@ Jogador j = p.getDono();
   
 #### public String getNome()
 retorna o nome da peça.
-  ```
-  Tabuleiro t = info.getTabuleiro();
-  Casa c = t.getCasa(0,0);
-  Peca p = c.getPeca();
-  String nome = p.getNome();
-  println(nome);
-  //deverá ser impresso o nome "gir" de girafa.
-  ```
+```
+Tabuleiro t = info.getTabuleiro();
+Casa c = t.getCasa(0,0);
+Peca p = c.getPeca();
+String nome = p.getNome();
+println(nome);
+//deverá ser impresso o nome "gir" de girafa.
+```
 
 #### public int[][] getMatrizDeMovimento()
 retorna uma matriz 3x3 que representa os movimentos de uma peça.
@@ -289,12 +289,14 @@ A matriz abaixo representa os movimentos do leão.
 [1][0][1]
 [1][1][1]
 ```
+
 A matriz abaixo representa os movimentos da girafa.
 ```
 [1][0][1]
 [0][0][0]
 [1][0][1]
 ```
+
 ## Logs e Replays:
 
 ### pasta replays:
