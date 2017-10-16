@@ -1,7 +1,7 @@
 Jogo jogo;
 Gui gui;
 int c = 0;
-int max = 100;
+int max = 3;
 
 int jogador1Pontos = 0;
 int jogador2Pontos = 0;
@@ -18,7 +18,12 @@ public void draw(){
   if(jogo.continuar()){
      jogo.turno();
      delay(jogo.getVelocidade());
-   }else if(c<max){
+   }else if(c == max){
+     salvarBatch();
+     c++;
+     //exit();
+   }
+   else if(c<max){
      JogadorCore ganhador = jogo.getGanhador();
      if(ganhador != null){
        int i = ganhador.getId();
@@ -31,35 +36,52 @@ public void draw(){
      }else{
        empates++;
      }
-     setGame();
      println(c);
      c++;
-   }else if(c == max){
-     salvarBatch();
-     c++;
-     //exit();
+     if(c<max){
+       setGame();
+     }
    }
 }
 
 public void setGame(){
+  //cria a primeira estratégia
   Estrategia e1 = new EstrategiaAleatoria();
-  //Estrategia e2 = new EstrategiaAleatoria();
+  
+  //cria a segunda estratégia
   Estrategia e2 = new EstrategiaGirafaAntesDeTudo();
+  
+  //cria o jogo com as duas estratégias
   jogo = new Jogo(e1,e2);
-  jogo.setLog(new LogProcessing());
+  //cria a classe responsável por fazer os logs.
   Log l = new LogProcessing();
+  //coloca a classe no jogo
+  jogo.setLog(l);
+  
+  //cria a classe responsável por fazer os replays.
   Replay r = new ReplayProcessing(l.getTimeStamp());
+  //coloca a classe no jogo.
   jogo.setReplay(r);
   
-  //jogo.salvarReplay();
-  jogo.salvarLog();
+  //liga replay.  
+  jogo.salvarReplay();// comentar essa para desligar replays.
+  //liga salvar log. 
+  jogo.salvarLog();// comentar essa para desligar logs.
   
+  //define a velocidade do jogo. Metodos para definir velocidade:
+  //velocidadeDevagar
+  //velocidadeNormal
+  //velocidadeRapida
+  //velocidadeMuitoRapida
   jogo.velocidadeMuitoRapida();
   
+  //inicia o jogo
   jogo.iniciar();
+  //coloca o jogo dentro da classe que denha a interface.
   gui = new GuiProto(jogo);
 }
 
+//metodo para salvar duelos longos
 public void salvarBatch(){
   Date d = new Date(); 
   String timestamp = d.getTime()+"";

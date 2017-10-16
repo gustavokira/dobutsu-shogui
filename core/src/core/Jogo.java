@@ -7,21 +7,21 @@ public class Jogo{
 	public static int JOGANDO = 1;
 	public static int FIM = 2;
   
-  private FabricaPecaCore fabricaPeca;
-  private Log log;
-  private Replay replay;
-  private int velocidade;
+	protected FabricaPecaCore fabricaPeca;
+	protected Log log;
+	protected Replay replay;
+	protected int velocidade;
   
-  private TabuleiroCore tabuleiro;
-  private JogadorCore jogador1;
-  private JogadorCore jogador2;
-  private JogadorCore jogadorAtivo;
-  private JogadorCore ganhador;
-  private int turno;
-  private Info info;
+  protected TabuleiroCore tabuleiro;
+  protected JogadorCore jogador1;
+  protected JogadorCore jogador2;
+  protected JogadorCore jogadorAtivo;
+  protected JogadorCore ganhador;
+  protected int turno;
+  protected Info info;
   
-  private int estado;
-  private int maxTurnos;
+  protected int estado;
+  protected int maxTurnos;
   
   public Jogo(Estrategia e1, Estrategia e2){
     
@@ -168,7 +168,7 @@ public class Jogo{
         }
   }
   
-  private void moverPecaParaMao(PecaCore p, JogadorCore j){
+  protected void moverPecaParaMao(PecaCore p, JogadorCore j){
     this.tabuleiro.removerPeca(p);
     if(p.getClass() == Galo.class){
       p = ((Galo) p).transformar();
@@ -178,16 +178,16 @@ public class Jogo{
     p.setDono(j);
     p.mudarDirecao();
   }
-  private void moverPecaNoTabuleiro(PecaCore p, int x,int y){
+  protected void moverPecaNoTabuleiro(PecaCore p, int x,int y){
     this.tabuleiro.removerPeca(p);
       this.tabuleiro.addPeca(p,x,y);
   }
-  private void colocarPecaNoTabuleiro(PecaCore p, int x,int y){
+  protected void colocarPecaNoTabuleiro(PecaCore p, int x,int y){
     this.jogadorAtivo.removePecaDaMao(p);
     this.tabuleiro.addPeca(p,x,y);
   }
   
-  private void trocarJogadorAtivo(){
+  protected void trocarJogadorAtivo(){
     if(this.jogadorAtivo == this.jogador1){
       this.jogadorAtivo = this.jogador2;
     }else{
@@ -205,7 +205,7 @@ public class Jogo{
     return this.jogador2;
   }
   
-  private void criarPecasJogador1(){
+  protected void criarPecasJogador1(){
     PecaCore g = fabricaPeca.criarGirafaParaBaixo();
     this.jogador1.colocarPeca(g);
     g.setDono(this.jogador1);
@@ -224,11 +224,10 @@ public class Jogo{
     PecaCore p = fabricaPeca.criarPintinhoParaBaixo();
     this.jogador1.colocarPeca(p);
     p.setDono(this.jogador1);
-    this.tabuleiro.addPeca(p,1,1);
-    
+    this.tabuleiro.addPeca(p,1,1); 
   }
   
-  private void criarPecasJogador2(){
+  protected void criarPecasJogador2(){
     PecaCore g = fabricaPeca.criarGirafaParaCima();
     this.jogador2.colocarPeca(g);
     g.setDono(this.jogador2);

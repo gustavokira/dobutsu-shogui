@@ -1,2 +1,8 @@
 dobutsu_shogui/replays/*
 dobutsu_shogui/logs/*.log
+dobutsu_shogui/longo-prazo/*
+.metadata/**
+.metadata/
+.metadata/.*
+.recommenders/*
+
