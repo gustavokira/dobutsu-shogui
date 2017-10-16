@@ -367,6 +367,10 @@ Caso um dos bots dos parcicipantes ganhe de todos os bots inimigos.
 2) Recomenda-se buscar ideias para estratégias com outras pessoas pessoas além do professor da disciplina.
 3) Recomenda-se que as equipes troquem informações sobre as estratégias a fim de vencer o verdadeiro inimigo.
 
+## Testando uma estratégia:
+
+No arquivo [dobutsu_shogui.pde](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/dobutsu_shogui.pde) existe uma função chamada setGame que define as condições iniciais do jogo. Para mudar uma estratégia, é preciso somente instanciar a sua no lugar de uma das que estão lá.
+
 ## Notas:
 As notas poderão ser diferentes para cada itegrante da equipe.
 Serão usadas para compor a nota final:
