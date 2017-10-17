@@ -4,5 +4,7 @@ dobutsu_shogui/longo-prazo/*
 .metadata/**
 .metadata/
 .metadata/.*
+.metadata/.plugins/*
+.metadata/.mylyn/*
 .recommenders/*
 
