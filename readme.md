@@ -3,14 +3,22 @@ jogo criado por Madoka Kitao.
 
 ESte software está dividido em duas partes: core e dobutsu_shogui. O core está escrito em Java e o dobutsu_shogui em Processing. No core estão as classes que simulam o jogo de tabuleiro original e no dobutsu_shogui os códigos que serão editados/extendidos para a atividade.
 
+## Regras do Jogo
+Este jogo é jogado por dois jogadores.
+
+
+
+Um detalhamento das regras encontra-se no arquivo [en-dobutsu.pdf](https://github.com/gustavokira/dobutsu-shogui/blob/master/en-dobutsu.pdf) (em inglês). 
+
+
 Outros nomes: yokai no mori, animal shogui.
 
 Peças:
-Leão
-Elefante
-Girafa
-Pintinho
-Galo
+* Leão
+* Elefante
+* Girafa
+* Pintinho
+* Galo
 
 ## Classes
 
@@ -143,7 +151,7 @@ Jogador j = new Jogador();
 ArrayList<Peca> pecas = j.getPecasNaMao();
 ```	
 
-### Info
+### [Info](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Info.java)
 A classe info tem 4 métodos públicos importantes:
   
   #### public Tabuleiro getTabuleiro();
@@ -194,7 +202,7 @@ A classe info tem 4 métodos públicos importantes:
   }
   ```
   
-### Tabuleiro
+### [Tabuleiro](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Tabuleiro.java)
 Classe responsável por representar o tabuleiro.
 
 #### public Casa getCasa(int x, int y)
@@ -235,7 +243,7 @@ Tabuleiro t = info.getTabuleiro();
 ArrayList<Casa> vazias = t.getCasasVazias();
 ```
 
-### Casa
+### [Casa](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Casa.java)
 Classe que representa uma casa do tabueiro.
 
 #### public int getX();
@@ -284,7 +292,7 @@ if(b1){
 }
 ```
 
-### Peca
+### [Peca](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Peca.java)
 #### public int getX()
 retorna um inteiro que representa a posição x da peça.
   
