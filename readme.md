@@ -354,6 +354,14 @@ A matriz abaixo representa os movimentos da girafa.
 ```
 
 ## Logs e Replays:
+No arquivo [dobutsu_shogui.pde](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/dobutsu_shogui.pde) existe a possibilidade de ligar e desligar a possibilidade de salvar logs e replays.
+
+```
+ //liga replay.  
+  jogo.salvarReplay();// comentar essa para desligar replays.
+  //liga salvar log. 
+  jogo.salvarLog();// comentar essa para desligar logs.
+```
 
 ### pasta replays:
 Onde ficam salvos os replays. O nome da pasta é o timestamp do começo do jogo.
