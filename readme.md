@@ -293,6 +293,7 @@ if(b1){
 ```
 
 ### [Peca](https://github.com/gustavokira/dobutsu-shogui/blob/master/core/src/core/Peca.java)
+
 #### public int getX()
 retorna um inteiro que representa a posição x da peça.
   
@@ -313,7 +314,12 @@ Jogador j = p.getDono();
 ```  
   
 #### public String getNome()
-retorna o nome da peça.
+retorna o nome da peça, sempre é uma palavra com três 
+- Girafa - "gir"
+- Pintinho - "pin"
+- Elefante - "ele"
+- Leão - "leo"
+- Galo - "gal"
 ```
 Tabuleiro t = info.getTabuleiro();
 Casa c = t.getCasa(0,0);
