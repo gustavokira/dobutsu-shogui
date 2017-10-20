@@ -278,7 +278,6 @@ boolean b2 = c2.temPeca();
 println(b2); //será mostrado false;
 ```
 
-   
 #### public Peca getPeca();
 retorna um objeto do tipo Peca que representa a peça nesta casa.
 ```
@@ -320,6 +319,7 @@ retorna o nome da peça, sempre é uma palavra com três
 - Elefante - "ele"
 - Leão - "leo"
 - Galo - "gal"
+
 ```
 Tabuleiro t = info.getTabuleiro();
 Casa c = t.getCasa(0,0);
@@ -384,6 +384,17 @@ Caso um dos bots dos parcicipantes ganhe de todos os bots inimigos.
 ## Testando uma estratégia:
 
 No arquivo [dobutsu_shogui.pde](https://github.com/gustavokira/dobutsu-shogui/blob/master/dobutsu_shogui/dobutsu_shogui.pde) existe uma função chamada setGame que define as condições iniciais do jogo. Para mudar uma estratégia, é preciso somente instanciar a sua no lugar de uma das que estão lá.
+
+Ex: Trocar o objeto instanciado em e1 e/ou e2 pela sua.
+
+```
+public void setGame(){
+  //cria a primeira estratégia
+  Estrategia e1 = new EstrategiaAleatoria();
+  
+  //cria a segunda estratégia
+  Estrategia e2 = new EstrategiaGirafaAntesDeTudo(); //aqui está sendo usada uma estratégia diferente da aleatória.
+```
 
 ## Notas:
 As notas poderão ser diferentes para cada itegrante da equipe.
