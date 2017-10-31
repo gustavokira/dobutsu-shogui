@@ -346,11 +346,18 @@ A matriz abaixo representa os movimentos do leão.
 [1][1][1]
 ```
 
-A matriz abaixo representa os movimentos da girafa.
+A matriz abaixo representa os movimentos do elefante.
 ```
 [1][0][1]
 [0][0][0]
 [1][0][1]
+```
+
+A matriz abaixo representa os movimentos da girafa.
+```
+[0][1][0]
+[1][0][1]
+[0][1][0]
 ```
 
 ## Logs e Replays:

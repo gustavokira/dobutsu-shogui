@@ -29,7 +29,7 @@ class EstrategiaMaterial extends Estrategia{
       return movimentos.get(r);
     }else{
       int r = int(random(movimentosQueValem.size()));
-      return movimentos.get(r);
+      return movimentosQueValem.get(r);
     }
   }
   
