@@ -25,14 +25,12 @@ public class Info{
     this.tabuleiro = new Tabuleiro(jogo.getTabuleiro(),jogador1,jogador2);
     this.movimentos = new ArrayList<Movimento>();
     this.meuLeaoEstaSendoAtacado = false;
-    
     ArrayList<Peca> pecas = this.tabuleiro.getPecas();
     ArrayList<Peca> pecasMinhas = new ArrayList<Peca>();
     ArrayList<Peca> pecasOponente = new ArrayList<Peca>();
     Peca meuLeao = null;
-    
     for(Peca p :pecas){
-      if(p.getDono().getId() == this.idDoJogadorAtual){
+    	if(p.getDono().getId() == this.idDoJogadorAtual){
         pecasMinhas.add(p);
         if(p.getNome().equals("leo")){
           meuLeao = p;

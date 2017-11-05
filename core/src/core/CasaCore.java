@@ -1,5 +1,5 @@
 package core;
-class CasaCore{
+public class CasaCore{
   private int x;
   private int y;
   private PecaCore peca;

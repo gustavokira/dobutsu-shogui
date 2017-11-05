@@ -47,11 +47,11 @@ public class Jogo{
 	  this.replay = replay;
   }
   
-  private void criarInfo(){
-    this.info = new Info(this,this.jogadorAtivo);    
+  protected void criarInfo(){
+    this.info = new Info(this,this.jogadorAtivo);
   }
   
-  private PecaCore acharPecaNoCore(Peca p){
+  protected PecaCore acharPecaNoCore(Peca p){
     ArrayList<PecaCore> pecas = new ArrayList<PecaCore>();
     pecas.addAll(this.jogador1.getPecasNaMao());
     pecas.addAll(this.jogador2.getPecasNaMao());
@@ -70,19 +70,19 @@ public class Jogo{
 	  this.estado = JOGANDO;  
   };
   
+  
   public boolean turno(){
 	  if(this.turno == this.maxTurnos){
 		  this.irParafim();
 	      return false;
 	  }
+	  
 	//cria o objeto que será passado para o jogador  
     this.criarInfo();
     
     //se existem movimentos disponíveis, o jogo não acabou
     if(this.info.getMovimentos().size()>0){
       Movimento m = this.jogadorAtivo.jogar(this.info);
-      
-      
       
       int px = m.getX();
       int py = m.getY();
@@ -125,7 +125,8 @@ public class Jogo{
     return true;
   }
   
-  private void irParafim(){
+  
+  protected void irParafim(){
      this.estado = FIM;
      
      if(this.log.estaLigado()){
@@ -141,7 +142,7 @@ public class Jogo{
      this.replay.salvarSeEstiverLigado();
   }
   
-  private JogadorCore verificarLeoesNosFins(){
+  protected JogadorCore verificarLeoesNosFins(){
     ArrayList<PecaCore> pecas = this.tabuleiro.getPecasLeoes();
     for(PecaCore p:pecas){
       if(p.getDono() == this.jogador1 && p.getY() == 3){
@@ -153,7 +154,7 @@ public class Jogo{
     }
     return null;
   }
-  private void transformarEmGalo(PecaCore p){
+  protected void transformarEmGalo(PecaCore p){
     if(
           (p.getDono() == this.jogador1 && p.getY() == 3) ||
           (p.getDono() == this.jogador2 && p.getY() == 0)
@@ -265,7 +266,7 @@ public class Jogo{
     return this.ganhador;
   }
   
-  private JogadorCore getOutroJogador(JogadorCore j){
+  protected JogadorCore getOutroJogador(JogadorCore j){
     if(j.getId() == this.jogador1.getId()){
       return this.jogador2;
     }else{
@@ -306,6 +307,5 @@ public class Jogo{
   }
   public void velocidadeMuitoRapida(){
     this.velocidade = 10;
-  }
-  
+  }  
 }

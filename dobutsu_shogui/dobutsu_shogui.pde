@@ -1,7 +1,9 @@
+import core.Log;
+
 Jogo jogo;
 Gui gui;
 int c = 0;
-int max = 3;
+int max = 30;
 
 int jogador1Pontos = 0;
 int jogador2Pontos = 0;
@@ -17,7 +19,7 @@ public void draw(){
   
   if(jogo.continuar()){
      jogo.turno();
-     delay(jogo.getVelocidade());
+     //delay(jogo.getVelocidade());
    }else if(c == max){
      salvarBatch();
      c++;
@@ -49,7 +51,7 @@ public void setGame(){
   Estrategia e1 = new EstrategiaAleatoria();
   
   //cria a segunda estratégia
-  Estrategia e2 = new EstrategiaGirafaAntesDeTudo();
+  Estrategia e2 = new EstrategiaComMemoria();
   
   //cria o jogo com as duas estratégias
   jogo = new Jogo(e1,e2);
@@ -64,9 +66,9 @@ public void setGame(){
   jogo.setReplay(r);
   
   //liga replay.  
-  jogo.salvarReplay();// comentar essa para desligar replays.
+  //jogo.salvarReplay();// comentar essa para desligar replays.
   //liga salvar log. 
-  jogo.salvarLog();// comentar essa para desligar logs.
+  //jogo.salvarLog();// comentar essa para desligar logs.
   
   //define a velocidade do jogo. Metodos para definir velocidade:
   //velocidadeDevagar
