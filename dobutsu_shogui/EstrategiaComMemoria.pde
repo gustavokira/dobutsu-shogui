@@ -9,14 +9,14 @@ import ai.memoria.DatabaseMemoria;
 import ai.memoria.Estado;
 
 //lembra dos próprios jogos que ganhou.
-class EstrategiaComMemoria extends Estrategia{
+class EstrategiaComMemoria extends EstrategiaAleatoria{
  
   int random = 0;
   int visitado = 0;
   int meuId;
   int turno;
   DatabaseMemoria db;   
-  int maxVisitas = 99;//valor preconfigurado. SELECT max(visitado) FROM dobutsu.estado; leva 14s...
+  int maxVisitas = 2273;//valor preconfigurado. SELECT max(visitado) FROM movimento_em_estado;
   public EstrategiaComMemoria(){
     super();
     turno = 0;
@@ -28,76 +28,6 @@ class EstrategiaComMemoria extends Estrategia{
     }
     
   }
-  
-  public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
-    this.meuId = info.getEu().getId();
-    
-    String idEstado = infoToString(info);
-    ArrayList<Estado>estados = null;
-    
-    try{
-      estados = db.getMovimentosPorEstado(idEstado,this.meuId);
-    }catch(Exception e){
-      println(e);
-    }
-    Movimento melhor = null;
-    Estado melhorEstado = null;
-    double valor = -1;
-    println("estados: "+estados.size());
-    if(estados != null){
-      
-      for(Movimento m:movimentos){
-        Estado escolhido = null;
-        
-        for(Estado e:estados){
-          
-          
-          if(
-            m.getX() == e.x &&
-            m.getY() == e.y &&
-            m.getTipo().equals(e.origem) &&
-            m.getPeca().getNome().equals(e.peca)
-          ){
-            escolhido = e;
-            break;
-          }
-        }
-        
-        if(escolhido != null){
-          
-          int ganhou = escolhido.ganhou;
-          int visitado = escolhido.visitado;
-          double v = (ganhou/visitado)+(visitado/maxVisitas);
-          
-          if(melhor == null){
-            melhor = m;
-            melhorEstado = escolhido;
-          }
-          else if(v > valor){
-            melhor = m;
-            melhorEstado = escolhido;
-          }
-        }
-      }
-    }
-    if(melhorEstado != null){
-      visitado++;
-    }
-    
-    this.turno++;
-    
-    if(melhor == null){
-      Random r = new Random();
-      int i = r.nextInt(movimentos.size());
-      melhor = movimentos.get(i);
-      random++;
-      
-    }
-    
-    return melhor;
-    
-  }
-  
   
   public String infoToString(Info info){
       String saida = "";
@@ -171,12 +101,32 @@ class EstrategiaComMemoria extends Estrategia{
     return saida;
     }
   
-  
-  public String getNome(){
+   public String getNome(){
     return "com memoria";
   }
   
   public String getEquipe(){
     return "ash ketchum";
+  }
+}
+
+class MovimentoComValor extends Movimento{
+  
+  private Movimento original;
+  private double valor;
+  
+  public MovimentoComValor(Movimento m,double valor){
+    super(m.getPeca(),m.getX(),m.getY(),m.getTipo(),m.getJogador());
+    this.valor = valor;
+    this.original = m;
+  }
+  public double getValor(){
+    return this.valor;
+  }
+  public Movimento getMovimentoOriginal(){
+    return this.original;
+  }
+  public String toString(){
+    return this.valor+"";
   }
 }

@@ -59,6 +59,36 @@ public class DatabaseMemoria {
 		}
 		return estados;
 	}
+	public ArrayList<Estado> getEstadosParaVisitar(int i) throws SQLException{
+		String query = "select * from movimento_em_estado where visitado < ? limit 1000";
+		PreparedStatement stmt = conn.prepareStatement(query);
+		stmt.setInt(1,i);
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Estado> estados = new ArrayList<Estado>();
+		while(rs.next()){
+			int x = rs.getInt("destino_x");
+	        int y = rs.getInt("destino_y");
+	        int v = rs.getInt("visitado");
+	        int g = rs.getInt("ganhou");
+	        int p = rs.getInt("perdeu");
+	        String estado = rs.getString("estado");
+	        int jogadorId = rs.getInt("jogador");
+	        String peca = rs.getString("peca_nome");
+	        String origem = rs.getString("origem");
+	        Estado e = new Estado();
+	        e.visitado = v;
+	        e.ganhou = g;
+	        e.perdeu = p;
+	        e.peca = peca;
+	        e.id = estado;
+	        e.origem = origem;
+	        e.jogadorId = jogadorId;
+	        e.x = x;
+	        e.y = y;
+	        estados.add(e);
+		}
+		return estados;
+	}
 	
 	public Estado getEstadoPorChave(String estado, int jogadorId, String peca, int x, int y,String origem) throws SQLException{
 

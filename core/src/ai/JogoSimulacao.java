@@ -92,7 +92,12 @@ public class JogoSimulacao extends Jogo{
 	    			break;
 	    		}
 			}
-			this.jogador1.colocarPecaNaMao(pc);
+			this.jogador1.colocarPeca(pc);
+		    pc.setDono(this.jogador1);
+		    if(pc.getDirecao() == -1){
+		    	pc.mudarDirecao();
+		    }
+		    this.jogador1.colocarPecaNaMao(pc);
 		}
 		int eleQty1 = Integer.parseInt(j1[1]);
 		for(int i =0;i<eleQty1;i++){
@@ -103,7 +108,12 @@ public class JogoSimulacao extends Jogo{
 	    			break;
 	    		}
 			}
-			this.jogador1.colocarPecaNaMao(pc);
+			this.jogador1.colocarPeca(pc);
+		    pc.setDono(this.jogador1);
+		    if(pc.getDirecao() == -1){
+		    	pc.mudarDirecao();
+		    }
+		    this.jogador1.colocarPecaNaMao(pc);
 		}
 		int girQty1 = Integer.parseInt(j1[2]);
 		for(int i =0;i<girQty1;i++){
@@ -114,7 +124,12 @@ public class JogoSimulacao extends Jogo{
 	    			break;
 	    		}
 			}
-			this.jogador1.colocarPecaNaMao(pc);
+			this.jogador1.colocarPeca(pc);
+		    pc.setDono(this.jogador1);
+		    if(pc.getDirecao() == -1){
+		    	pc.mudarDirecao();
+		    }
+		    this.jogador1.colocarPecaNaMao(pc);
 		}
 		
 		int pinQty2 = Integer.parseInt(j2[0]);
@@ -126,7 +141,12 @@ public class JogoSimulacao extends Jogo{
 	    			break;
 	    		}
 			}
-			this.jogador2.colocarPecaNaMao(pc);
+			this.jogador2.colocarPeca(pc);
+		    pc.setDono(this.jogador2);
+		    if(pc.getDirecao() == 1){
+		    	pc.mudarDirecao();
+		    }
+		    this.jogador2.colocarPecaNaMao(pc);
 		}
 		int eleQty2 = Integer.parseInt(j2[1]);
 		for(int i =0;i<eleQty2;i++){
@@ -137,7 +157,12 @@ public class JogoSimulacao extends Jogo{
 	    			break;
 	    		}
 			}
-			this.jogador2.colocarPecaNaMao(pc);
+			this.jogador2.colocarPeca(pc);
+		    pc.setDono(this.jogador2);
+		    if(pc.getDirecao() == 1){
+		    	pc.mudarDirecao();
+		    }
+		    this.jogador2.colocarPecaNaMao(pc);
 		}
 		int girQty2 = Integer.parseInt(j2[2]);
 		for(int i =0;i<girQty2;i++){
@@ -148,7 +173,12 @@ public class JogoSimulacao extends Jogo{
 	    			break;
 	    		}
 			}
-			this.jogador2.colocarPecaNaMao(pc);
+			this.jogador2.colocarPeca(pc);
+		    pc.setDono(this.jogador2);
+		    if(pc.getDirecao() == 1){
+		    	pc.mudarDirecao();
+		    }
+		    this.jogador2.colocarPecaNaMao(pc);
 		}
 		
 		
