@@ -42,10 +42,10 @@ public class Info{
     
     ArrayList<Peca> atacandoLeao = this.leaoEmPerigo(pecasOponente, meuLeao);
     boolean[][] matrizDeAtaque = this.criarMatrizDeAtaque(pecasOponente);
+    
     if(atacandoLeao.size() > 0){
       this.meuLeaoEstaSendoAtacado = true;
     }
-    
     
     for(Peca p :pecasMinhas){           
       int[][] matriz = p.getMatrizDeMovimento();

@@ -7,98 +7,21 @@ import java.sql.ResultSet;
 
 import ai.memoria.DatabaseMemoria;
 import ai.memoria.Estado;
+import ai.Utils;
 
 //lembra dos próprios jogos que ganhou.
-class EstrategiaComMemoria extends EstrategiaAleatoria{
+class EstrategiaComMemoria extends Estrategia{
  
-  int random = 0;
-  int visitado = 0;
-  int meuId;
-  int turno;
-  DatabaseMemoria db;   
-  int maxVisitas = 2273;//valor preconfigurado. SELECT max(visitado) FROM movimento_em_estado;
   public EstrategiaComMemoria(){
     super();
-    turno = 0;
-    db = new DatabaseMemoria("dobutsu-aleatorio", "root", "");
-    try{
-      db.abrirConexao();
-    }catch(Exception e){
-      println(e);
-    }
-    
+  }
+  
+  public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
+    return null;
   }
   
   public String infoToString(Info info){
-      String saida = "";
-    
-    for(int i = 0;i<info.getTabuleiro().getLargura();i++){
-        for(int j = 0;j<info.getTabuleiro().getAltura();j++){
-          String peca = "---";
-          int direcao = 0;
-          if(info.getTabuleiro().getCasa(i, j).temPeca()){
-            peca = info.getTabuleiro().getCasa(i, j).getPeca().getNome();
-            
-            int donoId = info.getTabuleiro().getCasa(i, j).getPeca().getDono().getId();
-            direcao = 1;
-            if(donoId == 2){
-              direcao = -1;
-            }
-          }
-          
-          String c = i+","+j+","+peca+","+direcao;
-          c+=":";
-          
-          saida+=c;
-        }
-      }
-    saida = saida.substring(0,saida.length()-1);
-    saida+=";";
-    
-    int[] maoJ1 = new int[3];
-    int[] maoJ2 = new int[3];
-    Jogador jogador1 = info.getEu();
-    Jogador jogador2 = info.getOponente();
-    if(info.getEu().getId() == 2){
-      jogador2 = info.getEu();
-      jogador1 = info.getOponente();
-    }
-      ArrayList<Peca> pecasNaMaoJ1 = jogador1.getPecasNaMao();
-      ArrayList<Peca> pecasNaMaoJ2 = jogador2.getPecasNaMao();
-      
-      for(Peca p:pecasNaMaoJ1){
-        if(p.getNome().equals("pin")){
-          maoJ1[0]++;
-        }
-        if(p.getNome().equals("ele")){
-          maoJ1[1]++;
-        }
-        if(p.getNome().equals("gir")){
-          maoJ1[2]++;
-        }
-    }
-      for(int m:maoJ1){
-        saida+= m+",";
-      }
-      saida = saida.substring(0, saida.length()-1);
-      saida +=":";
-      for(Peca p:pecasNaMaoJ2){
-        if(p.getNome().equals("pin")){
-          maoJ2[0]++;
-        }
-        if(p.getNome().equals("ele")){
-          maoJ2[1]++;
-        }
-        if(p.getNome().equals("gir")){
-          maoJ2[2]++;
-        }
-    }
-      for(int m:maoJ2){
-        saida+= m+",";
-      }
-      saida = saida.substring(0, saida.length()-1);
-    
-    return saida;
+      return Utils.infoToString(info);
     }
   
    public String getNome(){

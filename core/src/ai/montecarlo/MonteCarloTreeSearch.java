@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import ai.EstrategiaAleatoriaSimulacao;
+import ai.EstrategiaParaTeste;
 import ai.JogoSimulacao;
 import core.Info;
 import core.JogadorCore;
@@ -20,14 +21,18 @@ public class MonteCarloTreeSearch {
 	
 	private Arvore arvore;
 	private int meuId;
+	private No inicial;
 	private No atual;
     static double epsilon = 1e-6;
     private int qty;
+    private long inicio;
+    private int tipo;
 	
-	public MonteCarloTreeSearch(int id,String estadoStr,int qty){
+	public MonteCarloTreeSearch(int id,String estadoStr,int qty, int tipo){
 		this.meuId = id;
 		this.qty = qty;
-		JogoSimulacao jogo = new JogoSimulacao(new EstrategiaAleatoriaSimulacao(), new EstrategiaAleatoriaSimulacao());
+		this.inicio = System.currentTimeMillis();
+		JogoSimulacao jogo = new JogoSimulacao(new EstrategiaParaTeste(), new EstrategiaParaTeste());
 		LogJava l = new LogJava();
 		Replay r = new ReplayJava(l.getTimeStamp());
 		jogo.setLog(l);		
@@ -35,64 +40,65 @@ public class MonteCarloTreeSearch {
 		if(estadoStr != null){
 			jogo.stringToInfo(id, estadoStr);
 		}
+		this.tipo = tipo;
 		jogo.iniciar();
 		
-		if(this.meuId == 2){
-			jogo.turno();
-		}
+		
 		jogo.criarInfo();
 
 		this.arvore = new Arvore(jogo);
 		this.atual = this.arvore.raiz;
+		this.inicial = this.arvore.raiz;
 	}
 	
+	
+	
 	public void run(){
-		
-		for(int i =0;i<this.qty;i++){
-			this.atual = selecionar();
-			
-			this.expandir(this.atual);
-			for(No n:this.atual.proximos.values()){
-				this.simular(n);
-				this.atualizar(n);
-			}
+		if(tipo == 1){
+			this.runInterate();
+		}else{
+			this.runTempo();
 		}
+	}
+	
+	public void runTempo(){
+		long agora = System.currentTimeMillis();
 		
-//		HashMap<String,ArrayList<No>> saidas = new HashMap<String,ArrayList<No>>(); 
-//		for(No n:arvore.nos){
-//			String s = n.jogo.infoToString();
-//			ArrayList<No> ms = saidas.get(s);
-//			if(ms == null){
-//				ms = new ArrayList<No>();
-//				saidas.put(s, ms);
-//			}
-//			ms.add(n);
-//		}
-//		
-//		for(String s:saidas.keySet()){
-//			System.out.println("-------");
-//			System.out.println(s);
-//			for(No n: saidas.get(s)){
-//				System.out.println("chegou aqui:"+n.movimento+" "+n.valor);
-//				System.out.println("-");
-//				ArrayList<No> nos = new ArrayList<No>(n.proximos.values());
-//				Collections.sort(nos,new Comparator<No>(){
-//					public int compare(No n1,No n2){
-//						if(n1.valor > n2.valor){
-//							return -1;
-//						}else{
-//							return 1;
-//						}
-//					}
-//				});
-//				for(No f: nos){
-//					System.out.println("\t "+f.valor+" "+f.movimento);
-//				}
-//
-//			}
-//			System.out.println("");
-//		}
-		
+		while(agora - this.inicio < this.qty){
+			this.ciclo();
+			agora = System.currentTimeMillis();
+		}
+	}
+	
+	public void runInterate(){
+		int i = 0;
+		while(i < this.qty){
+			this.ciclo();
+			i++;
+		}
+	}
+	
+	public void ciclo(){
+		this.atual = selecionar(atual);
+		this.expandir(this.atual);
+		for(No n:this.atual.proximos.values()){
+			this.simular(n);
+			this.atualizar(n);
+		}
+	}
+	
+	public Movimento getMovimento(){
+		ArrayList<No> filhos = new ArrayList<No>(inicial.proximos.values());
+		No maior = Collections.max(filhos, new Comparator<No>(){
+			public int compare(No a, No b) {
+		        if (a.valor < b.valor)
+		            return -1;
+		        if (a.valor == b.valor)
+		            return 0;
+		        return 1;
+		    }
+		});
+		return maior.movimento;
 	}
 	
 	public double calcularValor(No n){
@@ -108,26 +114,39 @@ public class MonteCarloTreeSearch {
 				+ 1.41 * Math.sqrt(Math.log(pai.simulacoes) / (double) n.simulacoes);
 	}
 	
-	public No selecionar(){
-		No escolhido = null;
-		for(No n:arvore.nos){
-			int ni = n.simulacoes;
-			int N = 1;
-			if(n.anterior != null){
-				N = N+n.anterior.simulacoes;
-			}
-			Random r = new Random();
-			n.valor = calcularValor(n);
-			
-			if(escolhido == null){
-				escolhido = n;
-			}else if(escolhido.valor < n.valor){
-				escolhido = n;
+	public No selecionar(No atual){
+		No escolhido = atual;
+		ArrayList<No> filhos = new ArrayList<No>(atual.proximos.values());
+		if(filhos.size()>0){
+			for(No n:filhos){
+				n.valor = calcularValor(n);
+				if(escolhido == null){
+					escolhido = n;
+				}else if(escolhido.valor < n.valor){
+					escolhido = n;
+				}
 			}
 		}
+		return escolhido;
+		
+//		for(No n:arvore.nos){
+//			int ni = n.simulacoes;
+//			int N = 1;
+//			if(n.anterior != null){
+//				N = N+n.anterior.simulacoes;
+//			}
+//			Random r = new Random();
+//			n.valor = calcularValor(n);
+//			
+//			if(escolhido == null){
+//				escolhido = n;
+//			}else if(escolhido.valor < n.valor){
+//				escolhido = n;
+//			}
+//		}
 			
-			return escolhido;
-		}
+		
+	}
 		
 	public JogoSimulacao duplicarJogo(JogoSimulacao jogo){
 		JogoSimulacao novoJogo = new JogoSimulacao(new EstrategiaAleatoriaSimulacao(), new EstrategiaAleatoriaSimulacao());
@@ -154,7 +173,6 @@ public class MonteCarloTreeSearch {
 			Info novoInfo = novoJogo.getInfo();
 			ArrayList<Movimento> novosMovimentos = novoInfo.getMovimentos();
 			Movimento novoMovimento = null;
-			
 			for(Movimento nm:novosMovimentos){
 				if( nm.getJogador().getId() == m.getJogador().getId() &&
 					nm.getPeca().getNome().equals(m.getPeca().getNome()) &&
@@ -187,16 +205,23 @@ public class MonteCarloTreeSearch {
 		JogoSimulacao jogo = duplicarJogo(n.jogo);
 		jogo.iniciar();
 		
-		while(jogo.continuar()){
-			jogo.turno();
-			String infoStr = jogo.infoToString();
-		}
+		//bug
+		if(jogo.getTabuleiro().getPecasLeoes().size() < 2){
+//			String infoStr = jogo.infoToString();
+//			System.out.println(infoStr);
+		}else{
 		
-	    JogadorCore ganhador = jogo.getGanhador();
-	    if(ganhador != null && ganhador.getId() == this.meuId){
-	    	n.vitorias+=1;
-	    }
-	    n.simulacoes+=1;
+			while(jogo.continuar()){
+				jogo.turno();
+				String infoStr = jogo.infoToString();
+			}
+			
+		    JogadorCore ganhador = jogo.getGanhador();
+		    if(ganhador != null && ganhador.getId() == this.meuId){
+		    	n.vitorias+=1;
+		    }
+		    n.simulacoes+=1;
+		}
 	}
 	
 	public void atualizar(No n){
