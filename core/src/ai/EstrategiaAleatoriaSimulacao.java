@@ -27,7 +27,7 @@ public class EstrategiaAleatoriaSimulacao extends Estrategia{
 
 	@Override
 	public String getEquipe() {
-		return "simulador";
+		return "aleatorio";
 	}
 
 }
