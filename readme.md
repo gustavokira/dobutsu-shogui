@@ -429,12 +429,12 @@ Serão usadas para compor a nota final:
 ## Resultados 
 
 ### estratégias do dia 10/11 
-
 mil jogos em cada lado e todos contra todos.
 
-
 aleatória 396 - 594 PintoAlemao
+
 PintoAlemao 628 - 263 aleatória
+
 
 aleatória 573 - 211 Chacina
 
