@@ -65,8 +65,7 @@ public class Rodar {
 					}
 				}
 		
-				System.out.println(e1.getNome()+" - "+e2.getNome());
-				System.out.println(v1+" - "+v2);
+				System.out.println(e1.getNome()+" "+v1+" - "+v2+" "+e2.getNome());
 				v1 = 0;
 				v2 = 0;
 		
@@ -80,8 +79,7 @@ public class Rodar {
 						}
 					}
 				}
-				System.out.println(e2.getNome()+" - "+e1.getNome());
-				System.out.println(v2+" - "+v1);
+				System.out.println(e2.getNome()+" "+v2+" - "+v1+" "+e1.getNome());
 				System.out.println("");
 			}
 		}
