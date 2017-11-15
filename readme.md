@@ -431,141 +431,62 @@ Serão usadas para compor a nota final:
 ### estratégias do dia 10/11 
 mil jogos em cada lado e todos contra todos.
 
-aleatória 396 - 594 PintoAlemao
+primeiro      |           | segundo
+:------------ | :-------: | ------------:
+aleatória     | 396 - 594 | PintoAlemao
+PintoAlemao   | 628 - 263 | aleatória
+aleatória     | 573 - 211 | Chacina
+Chacina       | 929 - 71  | aleatória
+aleatória     | 99  - 901 | Cerol na mão
+Cerol na mão  | 904 - 96  | aleatória
+aleatória     | 124 - 876 | Fatality
+Fatality      | 869 - 131 | aleatória
+aleatória     | 295 - 705 | 1%
+1%            | 691 - 309 | aleatória
+aleatória     | 394 - 606 | girafa antes
+girafa antes  | 654 - 346 | aleatória
+aleatória     | 244 - 756 | material
+material      | 779 - 221 | aleatória
+PintoAlemao   | 0   - 0   | Chacina
+Chacina       | 829 - 167 | PintoAlemao
+PintoAlemao   | 202 - 791 | Cerol na mão
+Cerol na mão  | 882 - 110 | PintoAlemao
+PintoAlemao   | 238 - 756 | Fatality
+Fatality      | 871 - 129 | PintoAlemao
+PintoAlemao   | 465 - 479 | 1%
+1%            | 680 - 317 | PintoAlemao
+PintoAlemao   | 552 - 367 | girafa antes
+girafa antes  | 506 - 493 | PintoAlemao
+PintoAlemao   | 376 - 589 | material
+material      | 698 - 301 | PintoAlemao
+Chacina       | 708 - 292 | Cerol na mão
+Cerol na mão  | 936 - 28  | Chacina
+Chacina       | 548 - 452 | Fatality
+Fatality      | 812 - 32  | Chacina
+Chacina       | 879 - 121 | 1%
+1%            | 664 - 163 | Chacina
+Chacina       | 881 - 119 | girafa antes
+girafa antes  | 629 - 209 | Chacina
+Chacina       | 678 - 322 | material
+material      | 740 - 114 | Chacina
+Cerol na mão  | 449 - 551 | Fatality
+Fatality      | 558 - 442 | Cerol na mão
+Cerol na mão  | 823 - 177 | 1%
+1%            | 196 - 804 | Cerol na mão
+Cerol na mão  | 838 - 162 | girafa antes
+girafa antes  | 171 - 829 | Cerol na mão
+Cerol na mão  | 621 - 379 | material
+material      | 403 - 597 | Cerol na mão
+Fatality      | 784 - 216 | 1%
+1%            | 226 - 774 | Fatality
+Fatality      | 793 - 207 | girafa antes
+girafa antes  | 200 - 800 | Fatality
+Fatality      | 552 - 448 | material
+material      | 392 - 608 | Fatality
+1%            | 567 - 433 | girafa antes
+girafa antes  | 459 - 541 | 1%
+1%            | 333 - 667 | material
+material      | 666 - 334 | 1%
+girafa antes  | 331 - 669 | material
+material      | 647 - 353 | girafa antes
 
-PintoAlemao 628 - 263 aleatória
-
-
-aleatória 573 - 211 Chacina
-
-Chacina 929 - 71 aleatória
-
-
-aleatória 99 - 901 Cerol na mão
-
-Cerol na mão 904 - 96 aleatória
-
-
-aleatória 124 - 876 Fatality
-
-Fatality 869 - 131 aleatória
-
-
-aleatória 295 - 705 1%
-
-1% 691 - 309 aleatória
-
-
-aleatória 394 - 606 girafa antes
-
-girafa antes 654 - 346 aleatória
-
-
-aleatória 244 - 756 material
-
-material 779 - 221 aleatória
-
-
-PintoAlemao 0 - 0 Chacina
-
-Chacina 829 - 167 PintoAlemao
-
-
-PintoAlemao 202 - 791 Cerol na mão
-
-Cerol na mão 882 - 110 PintoAlemao
-
-
-PintoAlemao 238 - 756 Fatality
-
-Fatality 871 - 129 PintoAlemao
-
-
-PintoAlemao 465 - 479 1%
-
-1% 680 - 317 PintoAlemao
-
-
-PintoAlemao 552 - 367 girafa antes
-
-girafa antes 506 - 493 PintoAlemao
-
-
-PintoAlemao 376 - 589 material
-
-material 698 - 301 PintoAlemao
-
-
-Chacina 708 - 292 Cerol na mão
-
-Cerol na mão 936 - 28 Chacina
-
-
-Chacina 548 - 452 Fatality
-
-Fatality 812 - 32 Chacina
-
-
-Chacina 879 - 121 1%
-
-1% 664 - 163 Chacina
-
-
-Chacina 881 - 119 girafa antes
-
-girafa antes 629 - 209 Chacina
-
-
-Chacina 678 - 322 material
-
-material 740 - 114 Chacina
-
-
-Cerol na mão 449 - 551 Fatality
-
-Fatality 558 - 442 Cerol na mão
-
-
-Cerol na mão 823 - 177 1%
-
-1% 196 - 804 Cerol na mão
-
-
-Cerol na mão 838 - 162 girafa antes
-
-girafa antes 171 - 829 Cerol na mão
-
-
-Cerol na mão 621 - 379 material
-
-material 403 - 597 Cerol na mão
-
-
-Fatality 784 - 216 1%
-
-1% 226 - 774 Fatality
-
-
-Fatality 793 - 207 girafa antes
-
-girafa antes 200 - 800 Fatality
-
-
-Fatality 552 - 448 material
-
-material 392 - 608 Fatality
-
-
-1% 567 - 433 girafa antes
-
-girafa antes 459 - 541 1%
-
-
-1% 333 - 667 material
-
-material 666 - 334 1%
-
-
-girafa antes 331 - 669 material
-
-material 647 - 353 girafa antes
