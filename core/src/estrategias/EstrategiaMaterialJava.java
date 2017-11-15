@@ -16,8 +16,8 @@ class EstrategiaMaterialJava extends Estrategia{
   public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
     HashMap<String,Integer> valores = new HashMap<String,Integer>();
     valores.put("leo",0);
-    valores.put("gal",3);
-    valores.put("gir",2);
+    valores.put("gal",4);
+    valores.put("gir",3);
     valores.put("ele",2);
     valores.put("pin",1);
     ArrayList<Movimento> movimentosQueValem = new ArrayList<Movimento>(); 

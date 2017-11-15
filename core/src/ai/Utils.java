@@ -4,9 +4,35 @@ import java.util.ArrayList;
 
 import core.Info;
 import core.Jogador;
+import core.Movimento;
 import core.Peca;
 
 public class Utils {
+	
+	public static Movimento acharMovimento(Movimento movimento, ArrayList<Movimento> movimentos){
+		for(Movimento m:movimentos){
+			if(compararMovimentos(m,movimento)){
+				return m;
+			}
+		}
+		return null;
+	}
+	
+	public static boolean compararMovimentos(Movimento m1, Movimento m2){
+		if( m1.getJogador().getId() == m2.getJogador().getId() &&
+				m1.getPeca().getX() == m2.getPeca().getX() &&
+				m1.getPeca().getY() == m2.getPeca().getY() &&
+				m1.getPeca().getNome().equals(m2.getPeca().getNome()) &&
+				m1.getTipo().equals(m2.getTipo()) &&
+				m1.getX() == m2.getX() &&
+				m1.getY() == m2.getY()
+			){
+				return true;
+			}
+		else{
+			return false;
+		}
+	}
 
 	public static String infoToString(Info info){
 	      String saida = "";

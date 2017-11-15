@@ -1,11 +1,10 @@
-package ai.montecarlo;
+package ai;
 
 import java.util.HashMap;
 
-import ai.JogoSimulacao;
 import core.Movimento;
 
-class No{
+public class No{
 	public No anterior;
 	public JogoSimulacao jogo;
 	public HashMap<String,No> proximos;

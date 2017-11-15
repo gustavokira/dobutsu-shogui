@@ -1,12 +1,10 @@
-package ai.montecarlo;
+package ai;
 
 import java.util.ArrayList;
 
-import ai.JogoSimulacao;
-
 public class Arvore {	
-	No raiz;
-	ArrayList<No>nos;
+	public No raiz;
+	public ArrayList<No>nos;
 	public Arvore(JogoSimulacao jogo){
 		this.raiz = new No();
 		this.raiz.jogo = jogo;

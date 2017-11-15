@@ -10,7 +10,7 @@ import core.Tabuleiro;
 import core.Movimento;
 import core.Casa;
 
-class EstrategiaMatarJava extends Estrategia {
+public class EstrategiaMatarJava extends Estrategia {
 	  
 	  public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
 	    HashMap<String,Integer> valores = new HashMap<String,Integer>();

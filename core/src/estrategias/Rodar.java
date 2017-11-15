@@ -2,6 +2,7 @@ package estrategias;
 
 
 import ai.EstrategiaAleatoriaSimulacao;
+import ai.EstrategiaParaTeste;
 import ai.JogoSimulacao;
 import core.Estrategia;
 import core.JogadorCore;
@@ -36,6 +37,8 @@ public class Rodar {
 		Rodar r = new Rodar();
 		int qty = 1000;
 		Estrategia[] estrategias = {
+				//new EstrategiaMinMax(),
+				new EstrategiaParaTeste(),
 				new EstrategiaAleatoriaSimulacao(),
 				new EstrategiaAlemaoJava(),
 				new EstrategiaChacinaJava(),

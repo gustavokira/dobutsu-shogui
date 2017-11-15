@@ -3,7 +3,7 @@ import core.Log;
 Jogo jogo;
 Gui gui;
 int c = 0;
-int max = 10;
+int max = 5;
 
 int jogador1Pontos = 0;
 int jogador2Pontos = 0;
@@ -19,7 +19,7 @@ public void draw(){
   
   if(jogo.continuar()){
      jogo.turno();
-     //delay(jogo.getVelocidade());
+     delay(jogo.getVelocidade());
    }else if(c == max){
      salvarBatch();
      c++;
@@ -49,9 +49,10 @@ public void draw(){
 public void setGame(){
   Estrategia e1 = null;
   Estrategia e2 = null;
-    e1 = new EstrategiaAleatoria();
+    //e1 = new EstrategiaMCTS();
+    e1 = new EstrategiaParaTeste();
     //e2 = new EstrategiaMatadora();
-     e2 = new EstrategiaMCTS();
+     e2 = new EstrategiaMatar();
   
   //cria o jogo com as duas estratégias
   jogo = new Jogo(e1,e2);
