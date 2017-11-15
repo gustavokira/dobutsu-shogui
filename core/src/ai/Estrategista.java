@@ -97,6 +97,7 @@ public class Estrategista {
 	public Movimento fecharLeao(Info info, ArrayList<Movimento> movimentos) {
 		for (Movimento m : movimentos) {
 			JogoSimulacao j = new JogoSimulacao(new EstrategiaAleatoriaSimulacao(), new EstrategiaAleatoriaSimulacao());
+			j.iniciar();
 			LogJava l = new LogJava();
 			Replay r = new ReplayJava(l.getTimeStamp());
 			j.setLog(l);

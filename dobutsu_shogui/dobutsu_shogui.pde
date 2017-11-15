@@ -51,6 +51,7 @@ public void setGame(){
   Estrategia e2 = null;
     //e1 = new EstrategiaMCTS();
     e1 = new EstrategiaParaTeste();
+    //e1 = new EstrategiaAleatoria();
     //e2 = new EstrategiaMatadora();
      e2 = new EstrategiaMatar();
   
@@ -65,7 +66,7 @@ public void setGame(){
   Replay r = new ReplayProcessing(l.getTimeStamp());
   //coloca a classe no jogo.
   jogo.setReplay(r);
-  
+  //jogo.inverter();
   //liga replay.  
   //jogo.salvarReplay();// comentar essa para desligar replays.
   //liga salvar log. 
