@@ -1,7 +1,9 @@
+import core.Log;
+
 Jogo jogo;
 Gui gui;
 int c = 0;
-int max = 3;
+int max = 5;
 
 int jogador1Pontos = 0;
 int jogador2Pontos = 0;
@@ -45,11 +47,13 @@ public void draw(){
 }
 
 public void setGame(){
-  //cria a primeira estratégia
-  Estrategia e1 = new EstrategiaAleatoria();
-  
-  //cria a segunda estratégia
-  Estrategia e2 = new EstrategiaGirafaAntesDeTudo();
+  Estrategia e1 = null;
+  Estrategia e2 = null;
+    //e1 = new EstrategiaMCTS();
+    e1 = new EstrategiaParaTeste();
+    //e1 = new EstrategiaAleatoria();
+    //e2 = new EstrategiaMatadora();
+     e2 = new EstrategiaMatar();
   
   //cria o jogo com as duas estratégias
   jogo = new Jogo(e1,e2);
@@ -62,18 +66,18 @@ public void setGame(){
   Replay r = new ReplayProcessing(l.getTimeStamp());
   //coloca a classe no jogo.
   jogo.setReplay(r);
-  
+  //jogo.inverter();
   //liga replay.  
-  jogo.salvarReplay();// comentar essa para desligar replays.
+  //jogo.salvarReplay();// comentar essa para desligar replays.
   //liga salvar log. 
-  jogo.salvarLog();// comentar essa para desligar logs.
+  //jogo.salvarLog();// comentar essa para desligar logs.
   
   //define a velocidade do jogo. Metodos para definir velocidade:
   //velocidadeDevagar
   //velocidadeNormal
   //velocidadeRapida
   //velocidadeMuitoRapida
-  jogo.velocidadeMuitoRapida();
+  jogo.velocidadeRapida();
   
   //inicia o jogo
   jogo.iniciar();
