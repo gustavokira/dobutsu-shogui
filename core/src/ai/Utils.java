@@ -2,10 +2,12 @@ package ai;
 
 import java.util.ArrayList;
 
+import core.Casa;
 import core.Info;
 import core.Jogador;
 import core.Movimento;
 import core.Peca;
+import core.Tabuleiro;
 
 public class Utils {
 	
@@ -105,6 +107,102 @@ public class Utils {
 	    
 	    return saida;
 	    }
-	  
 	
+	public static boolean temLeaoAoFim(Info info){
+		Tabuleiro t = info.getTabuleiro();
+		for(int i = 0;i<3;i++){
+			Casa c = t.getCasa(i, 0);
+			if(
+				c.temPeca() && 
+				c.getPeca().getNome().equals("leo") &&
+				c.getPeca().getDono().getId() == 2
+			){
+				return true;
+			}
+		}
+		for(int i = 0;i<3;i++){
+			Casa c = t.getCasa(i, 3);
+			if(
+				c.temPeca() && 
+				c.getPeca().getNome().equals("leo") &&
+				c.getPeca().getDono().getId() == 1
+			){
+				return true;
+			}
+		}
+		
+		
+		return false;
+	}
+	
+	public static Peca pegarLeaoPorId(Info info, int jogadorId){
+		Tabuleiro t = info.getTabuleiro();
+		for(Peca p : t.getPecas()){
+			if(p.getNome().equals("leo") && p.getDono().getId() == jogadorId){
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public static ArrayList<Peca> atacantesDeUmaPeca(Info info, Peca peca) {
+		ArrayList<Peca> atacantes = new ArrayList<Peca>();
+		
+		for (Peca p : info.getTabuleiro().getPecas()) {
+			if(peca.getDono().getId() != p.getDono().getId()){
+				int[][] matriz = p.getMatrizDeMovimento();
+				for (int i = 0; i < matriz.length; i++) {
+					int x = p.getX() + matriz[i][0];
+					int y = p.getY() + matriz[i][1];
+	
+					if (x == peca.getX() && y == peca.getY()) {
+						atacantes.add(p);
+					}
+				}
+			}
+		}
+		return atacantes;
+	}
+
+	public static boolean[][] criarMatrizDeAtaque(Info info, ArrayList<Peca> pecas) {
+		
+		boolean[][] matrizDeAtaque = new boolean[3][4];
+		for (Peca p : pecas) {
+			int[][] matriz = p.getMatrizDeMovimento();
+			for (int i = 0; i < matriz.length; i++) {
+				int x = p.getX() + matriz[i][0];
+				int y = p.getY() + matriz[i][1];
+
+				if (!(x < 0 || x > 3 - 1 || y < 0 || y > 4 - 1)) {
+					matrizDeAtaque[x][y] = true;
+				}
+			}
+		}
+		return matrizDeAtaque;
+	}
+
+	public static ArrayList<Movimento> criarMovimentosPossiveis(Info info, Peca p){
+		ArrayList<Movimento> movimentos = new ArrayList<Movimento>();
+		int[][] matriz = p.getMatrizDeMovimento();
+		for (int i = 0; i < matriz.length; i++) {
+			int x = p.getX() + matriz[i][0];
+			int y = p.getY() + matriz[i][1];
+			
+			if (! (x < 0 || x > 3 - 1 || y < 0 || y > 4 - 1)) {
+				Casa c = info.getTabuleiro().getCasa(x, y);
+				Peca destino = c.getPeca();
+				
+				if (destino != null && destino.getDono() != p.getDono()) {
+					Movimento m = new Movimento(p, x, y, "mover", p.getDono());
+					movimentos.add(m);
+				}
+
+				if (destino == null) {
+					Movimento m = new Movimento(p, x, y, "mover", p.getDono());
+					movimentos.add(m);
+				}
+			}
+		}
+		return movimentos;
+	}
 }

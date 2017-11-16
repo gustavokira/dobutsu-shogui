@@ -191,15 +191,22 @@ public class Jogo {
 
 		// cria o objeto que será passado para o jogador
 		this.criarInfo();
+		
+		// se não existem movimentos disponíveis, o jogo acabou
+		if (this.info.getMovimentos().size() == 0) {
+			this.ganhador = this.getOutroJogador(this.jogadorAtivo);
+			this.irParafim();
+			return false;
+		}
 
-		// se existem movimentos disponíveis, o jogo não acabou
-		if (this.info.getMovimentos().size() > 0) {
+		if(this.info.getMovimentos().size() > 0){
+			// se existem movimentos disponíveis, o jogo não acabou
 			Movimento m = this.jogadorAtivo.jogar(this.info);
-
+	
 			int px = m.getX();
 			int py = m.getY();
 			PecaCore p = acharPecaNoCore(m.getPeca());
-
+	
 			if (m.getTipo().equals("mover")) {
 				CasaCore c = this.tabuleiro.getCasa(px, py);
 				if (c.temPeca()) {
@@ -207,7 +214,7 @@ public class Jogo {
 					this.moverPecaParaMao(alvo, this.jogadorAtivo);
 				}
 				this.moverPecaNoTabuleiro(p, px, py);
-
+	
 				if (p.getClass() == Pintinho.class) {
 					this.transformarEmGalo(p);
 				}
@@ -216,24 +223,20 @@ public class Jogo {
 			}
 			this.log.adicionar(this.turno, m, this.jogadorAtivo);
 			this.replay.salvarSeEstiverLigado();
-
-			// se não existem movimentos disponíveis, o jogo acabou
-		} else {
-			this.ganhador = this.getOutroJogador(this.jogadorAtivo);
-			this.irParafim();
-			return false;
+	
+			JogadorCore ganhador = this.verificarLeoesNosFins();
+			if (ganhador != null) {
+				this.ganhador = ganhador;
+				this.irParafim();
+				return false;
+			}
+	
+			this.trocarJogadorAtivo();
+			this.turno++;
+			return true;
 		}
-
-		JogadorCore ganhador = this.verificarLeoesNosFins();
-		if (ganhador != null) {
-			this.ganhador = ganhador;
-			this.irParafim();
-			return false;
-		}
-
-		this.trocarJogadorAtivo();
-		this.turno++;
-		return true;
+		
+		return false;
 	}
 
 	protected void irParafim() {
