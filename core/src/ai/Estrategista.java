@@ -14,7 +14,71 @@ import core.Tabuleiro;
 
 public class Estrategista {
 
-	
+	public Movimento colocarProtegido(Info info, ArrayList<Movimento> movimentos) {
+		boolean[][] perigo = new boolean[3][4];
+		boolean[][] protegido = new boolean[3][4];
+		
+		ArrayList<Peca> pecasInimigo = new ArrayList<Peca>();
+		ArrayList<Peca> pecasMinhas = new ArrayList<Peca>();
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 4; j++) {
+				perigo[i][j] = false;
+				protegido[i][j] = false;
+				Casa c = info.getTabuleiro().getCasa(i, j);
+				if (c.temPeca()) {
+					Peca p = c.getPeca();
+					if (p.getDono().getId() != info.getEu().getId()) {
+						pecasInimigo.add(p);
+					}else{
+						pecasMinhas.add(p);
+					}
+				}
+			}
+		}
+
+		for (Peca p : pecasInimigo) {
+			int[][] matriz = p.getMatrizDeMovimento();
+			for (int i = 0; i < matriz.length; i++) {
+				int x = p.getX() + matriz[i][0];
+				int y = p.getY() + matriz[i][1];
+				if (x > 0 && x < 3 && y > 0 && y < 4) {
+					perigo[x][y] = true;
+				}
+			}
+		}
+		
+		for (Peca p : pecasMinhas) {
+			int[][] matriz = p.getMatrizDeMovimento();
+			for (int i = 0; i < matriz.length; i++) {
+				int x = p.getX() + matriz[i][0];
+				int y = p.getY() + matriz[i][1];
+				if (x > 0 && x < 3 && y > 0 && y < 4) {
+					protegido[x][y] = true;
+				}
+			}
+		}
+		ArrayList<Movimento> candidatos = new ArrayList<Movimento>();
+		for (Movimento m : movimentos) {
+			if (m.getTipo().equals("colocar") && perigo[m.getX()][m.getY()] == false && protegido[m.getX()][m.getY()] == true) {
+				candidatos.add(m);
+			}
+		}
+		if(candidatos.size() > 0){
+			for (Movimento m : candidatos) {
+				String nomePeca = m.getPeca().getNome();
+				if(nomePeca.equals("gir")){
+					return m;
+				}
+				if(nomePeca.equals("ele")){
+					return m;
+				}
+				if(nomePeca.equals("pin")){
+					return m;
+				}
+			}
+		}
+		return null;
+	}
 	
 	public Movimento colocarASalvo(Info info, ArrayList<Movimento> movimentos) {
 		int[][] perigo = new int[3][4];
@@ -61,13 +125,13 @@ public class Estrategista {
 		for (Movimento m : movimentos) {
 			if (m.getTipo().equals("colocar") && perigo[m.getX()][m.getY()] > 0) {
 				Peca p = m.getPeca();
-				if(p.getNome().equals("gir")){
+				if(p.getNome().equals("pin")){
 					return m;
 				}
 				if(p.getNome().equals("ele")){
 					return m;
 				}
-				if(p.getNome().equals("pin")){
+				if(p.getNome().equals("gir")){
 					return m;
 				}
 			}
