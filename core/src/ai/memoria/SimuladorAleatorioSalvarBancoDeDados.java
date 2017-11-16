@@ -60,10 +60,6 @@ public class SimuladorAleatorioSalvarBancoDeDados{
 				jogo.criarInfo();
 			}
 			
-			
-			
-			
-			
 			while(jogo.continuar()){
 				int t = jogo.getTurno();
 				String estadoId = jogo.infoToString();
