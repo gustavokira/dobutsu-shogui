@@ -3,48 +3,13 @@ import java.util.*;
 
 Jogo jogo;
 Gui gui;
-
 Duelo duelo = new Duelo();
-    
+
 public void setup(){
   size(401,600);
-
   //quantidade de jogos
   duelo.quantidade = 3;
- 
   setGame();
-}
-
-public void draw(){
-  gui.desenhar();
-  
-  if(jogo.continuar()){
-     jogo.turno();
-     delay(jogo.getVelocidade());
-   }else if(duelo.turno == duelo.quantidade){
-     duelo.salvarBatch();
-     duelo.terminouUmJogo();
-   }
-   else if(duelo.turno<duelo.quantidade){
-     JogadorCore ganhador = jogo.getGanhador();
-     if(ganhador != null){
-       int ganhadorId = ganhador.getId();
-       
-       if(ganhadorId == 1){ duelo.jogador1Ganhou(); }
-       else{ duelo.jogador2Ganhou(); }
-       
-       println((duelo.turno+1)+" ganhador:"+ganhador.getId());
-     }else{
-       duelo.empatou();
-       println((duelo.turno+1)+" empate");
-     }
-     
-     duelo.terminouUmJogo();
-     
-     if(duelo.turno<duelo.quantidade){
-       setGame();
-     }
-   }
 }
 
 public void setGame(){
@@ -82,6 +47,24 @@ public void setGame(){
   jogo.iniciar();
   //coloca o jogo dentro da classe que denha a interface.
   gui = new GuiProto(jogo);
+}    
+    
+public void draw(){
+  gui.desenhar();
+  
+  if(jogo.continuar()){
+     jogo.turno();
+     delay(jogo.getVelocidade());
+   }
+   else if(duelo.turno<duelo.quantidade){
+     duelo.definirGanhador(jogo);
+     duelo.terminouUmJogo();
+     setGame();
+   }
+   else if(duelo.turno == duelo.quantidade){
+     duelo.salvarBatch();
+     duelo.terminouUmJogo();
+   }
 }
 
 //classes auxiliares
@@ -127,6 +110,7 @@ class Duelo{
     this.jogador1Pontos = 0;
     this.jogador2Pontos = 0;
   }
+  
   public void empatou(){
     this.empates++;
   }
@@ -135,6 +119,21 @@ class Duelo{
   }
   public void jogador2Ganhou(){
     this.jogador2Pontos++;
+  }
+  
+  public void definirGanhador(Jogo jogo){
+    JogadorCore ganhador = jogo.getGanhador();
+     if(ganhador != null){
+       int ganhadorId = ganhador.getId();
+       
+       if(ganhadorId == 1){ duelo.jogador1Ganhou(); }
+       else{ duelo.jogador2Ganhou(); }
+       
+       println((duelo.turno+1)+" ganhador:"+ganhador.getId());
+     }else{
+       duelo.empatou();
+       println((duelo.turno+1)+" empate");
+     }
   }
   
   public void terminouUmJogo(){

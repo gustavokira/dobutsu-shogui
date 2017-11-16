@@ -8,6 +8,7 @@ import ai.JogoSimulacao;
 import core.Estrategia;
 import core.Info;
 import core.Jogador;
+import core.JogadorCore;
 import core.LogJava;
 import core.Movimento;
 import core.Peca;
@@ -21,7 +22,9 @@ public class SimularMonteCarlo {
 //		MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(1,null,1000,0);
 //		mcts.run();
 //		mcts.getMovimento();
-//		
+		
+		System.out.println("Monte");
+		
 		for(int i =0;i<10;i++){
 			JogoSimulacao jogo = new JogoSimulacao(new EstrategiaMCTS(), new EstrategiaAleatoriaSimulacao());
 			
@@ -34,10 +37,10 @@ public class SimularMonteCarlo {
 			while(jogo.continuar()){
 				jogo.turno();
 			}
-		}
-		
+			JogadorCore ganhador = jogo.getGanhador();
+			System.out.println(ganhador.getId());
+		}	
 	}
-
 }
 
 class EstrategiaMCTS extends Estrategia{
@@ -48,7 +51,7 @@ class EstrategiaMCTS extends Estrategia{
 	    String infoStr = infoToString(info);
 	    int i = info.getEu().getId();
 
-	    MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(i,infoStr,1000,0);
+	    MonteCarloTreeSearch mcts = new MonteCarloTreeSearch(i,infoStr,20,1);
 	    mcts.run();
 	    Movimento melhor= mcts.getMovimento();
 	    Movimento escolhido= null;

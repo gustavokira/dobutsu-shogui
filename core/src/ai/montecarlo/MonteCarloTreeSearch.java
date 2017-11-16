@@ -1,14 +1,18 @@
 package ai.montecarlo;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 
+import ai.Arvore;
 import ai.EstrategiaAleatoriaSimulacao;
 import ai.EstrategiaParaTeste;
 import ai.JogoSimulacao;
+import ai.No;
+import estrategias.EstrategiaMatarJava;
 import core.Info;
 import core.JogadorCore;
 import core.LogJava;
@@ -16,6 +20,7 @@ import core.Movimento;
 import core.PecaCore;
 import core.Replay;
 import core.ReplayJava;
+
 
 public class MonteCarloTreeSearch {
 	
@@ -42,7 +47,6 @@ public class MonteCarloTreeSearch {
 		}
 		this.tipo = tipo;
 		jogo.iniciar();
-		
 		
 		jogo.criarInfo();
 
@@ -128,28 +132,10 @@ public class MonteCarloTreeSearch {
 			}
 		}
 		return escolhido;
-		
-//		for(No n:arvore.nos){
-//			int ni = n.simulacoes;
-//			int N = 1;
-//			if(n.anterior != null){
-//				N = N+n.anterior.simulacoes;
-//			}
-//			Random r = new Random();
-//			n.valor = calcularValor(n);
-//			
-//			if(escolhido == null){
-//				escolhido = n;
-//			}else if(escolhido.valor < n.valor){
-//				escolhido = n;
-//			}
-//		}
-			
-		
 	}
 		
 	public JogoSimulacao duplicarJogo(JogoSimulacao jogo){
-		JogoSimulacao novoJogo = new JogoSimulacao(new EstrategiaAleatoriaSimulacao(), new EstrategiaAleatoriaSimulacao());
+		JogoSimulacao novoJogo = new JogoSimulacao(new EstrategiaParaTeste(), new EstrategiaParaTeste());
 		LogJava l = new LogJava();
 		Replay r = new ReplayJava(l.getTimeStamp());
 		String estado = jogo.infoToString();
