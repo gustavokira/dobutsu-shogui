@@ -405,4 +405,8 @@ public class Jogo {
 	public void velocidadeMuitoRapida() {
 		this.velocidade = 10;
 	}
+	
+	public void velocidadeMaxima() {
+		this.velocidade = 0;
+	}
 }
