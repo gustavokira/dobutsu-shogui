@@ -8,7 +8,7 @@ Duelo duelo = new Duelo();
 public void setup(){
   size(401,600);
   //quantidade de jogos
-  duelo.quantidade = 3;
+  duelo.quantidade = 30;
   setGame();
 }
 
