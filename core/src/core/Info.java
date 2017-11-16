@@ -34,9 +34,11 @@ public class Info {
 		for (Peca p : pecas) {
 			if (p.getDono().getId() == this.idDoJogadorAtual) {
 				pecasMinhas.add(p);
+				
 				if (p.getNome().equals("leo")) {
 					meuLeao = p;
 				}
+				
 			} else {
 				pecasOponente.add(p);
 			}
@@ -75,8 +77,7 @@ public class Info {
 						}
 					} else {
 
-						// se o meu leão está sendo atacado, posso matar os
-						// atacantes.
+						// se o meu leão está sendo atacado, posso matar os atacantes.
 						if (this.meuLeaoEstaSendoAtacado) {
 							for (Peca atl : atacandoLeao) {
 								if (destino != null && atl.getId() == destino.getId()
@@ -102,20 +103,8 @@ public class Info {
 		}
 
 		if (!this.meuLeaoEstaSendoAtacado) {
-			pecasMinhas.clear();
-			if (this.idDoJogadorAtual == this.jogador1.getId()) {
-				pecasMinhas = this.jogador1.getPecasNaMao();
-			} else {
-				pecasMinhas = this.jogador2.getPecasNaMao();
-			}
-
-			ArrayList<Casa> casasVazias = this.tabuleiro.getCasasVazias();
-			for (Peca p : pecasMinhas) {
-				for (Casa c : casasVazias) {
-					Movimento m = new Movimento(p, c.getX(), c.getY(), "colocar", this.jogadorAtual);
-					this.movimentos.add(m);
-				}
-			}
+			ArrayList<Movimento> queVemDaMao = criarMovimentosQueVemDaMao();
+			this.movimentos.addAll(queVemDaMao);
 		}
 
 	}
@@ -123,6 +112,27 @@ public class Info {
 	public Tabuleiro getTabuleiro() {
 		return this.tabuleiro;
 	}
+	
+	private ArrayList<Movimento> criarMovimentosQueVemDaMao() {
+		ArrayList<Peca> pecasMinhas = new ArrayList<Peca>();
+		ArrayList<Movimento> movimentos = new ArrayList<Movimento>();
+		
+		if (this.idDoJogadorAtual == this.jogador1.getId()) {
+			pecasMinhas = this.jogador1.getPecasNaMao();
+		} else {
+			pecasMinhas = this.jogador2.getPecasNaMao();
+		}
+
+		ArrayList<Casa> casasVazias = this.tabuleiro.getCasasVazias();
+		for (Peca p : pecasMinhas) {
+			for (Casa c : casasVazias) {
+				Movimento m = new Movimento(p, c.getX(), c.getY(), "colocar", this.jogadorAtual);
+				movimentos.add(m);
+			}
+		}
+		return movimentos;
+	}
+	
 
 	private ArrayList<Peca> leaoEmPerigo(ArrayList<Peca> pecas, Peca leao) {
 		ArrayList<Peca> atacantes = new ArrayList<Peca>();
