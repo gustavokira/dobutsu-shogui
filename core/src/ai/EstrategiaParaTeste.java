@@ -25,6 +25,9 @@ public class EstrategiaParaTeste extends Estrategia{
 		escolha = e.material(info, movimentos);
 		if(escolha != null){ return escolha;}
 		
+		escolha = e.colocarASalvo(info, movimentos);
+		if(escolha != null){ return escolha;}
+		
 		Random r = new Random();
 		int i = r.nextInt(movimentos.size());
 		escolha = movimentos.get(i);

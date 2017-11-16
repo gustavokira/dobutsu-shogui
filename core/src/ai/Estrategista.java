@@ -59,22 +59,17 @@ public class Estrategista {
 		}
 
 		for (Movimento m : movimentos) {
-			if (m.getTipo().equals("colocar") && perigo[m.getX()][m.getY()] > -1) {
+			if (m.getTipo().equals("colocar") && perigo[m.getX()][m.getY()] > 0) {
 				Peca p = m.getPeca();
-				
-				int[][] matriz = p.getMatrizDeMovimento();
-				for (int i = 0; i < matriz.length; i++) {
-					int x = p.getX() + matriz[i][0];
-					int y = p.getY() + matriz[i][1];
-					if (x > 0 && x < 3 && y > 0 && y < 4) {
-						Casa c = info.getTabuleiro().getCasa(x, y);
-						if(c.temPeca()){
-							return m;
-						}
-					}
+				if(p.getNome().equals("gir")){
+					return m;
 				}
-				
-
+				if(p.getNome().equals("ele")){
+					return m;
+				}
+				if(p.getNome().equals("pin")){
+					return m;
+				}
 			}
 		}
 		return null;

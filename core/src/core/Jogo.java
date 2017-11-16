@@ -30,14 +30,33 @@ public class Jogo {
 		this.fabricaPeca = new FabricaPecaCore();
 
 		this.tabuleiro = new TabuleiroCore();
-		this.jogador1 = new JogadorCore(e1, 1);
-		this.jogador2 = new JogadorCore(e2, 2);
-		this.jogadorAtivo = jogador1;
 		this.turno = 0;
 		this.maxTurnos = 500;
 
 		this.velocidadeNormal();
 		this.estado = PRE;
+		
+		this.jogador1 = new JogadorCore(e1, 1);
+		this.jogador2 = new JogadorCore(e2, 2);
+		this.jogadorAtivo = jogador1;
+		
+	}
+	
+	public Jogo(){
+		this.fabricaPeca = new FabricaPecaCore();
+		this.tabuleiro = new TabuleiroCore();
+		this.turno = 0;
+		this.maxTurnos = 500;
+
+		this.velocidadeNormal();
+		this.estado = PRE;
+	}
+	public void setComputador(Estrategia e, int i){
+		switch (i) {
+			case 1: this.jogador1 = new JogadorCore(e, 1); break;
+			case 2: this.jogador2 = new JogadorCore(e, 2); break;
+			default: break;
+		}
 	}
 	
 	public void inverter(){
