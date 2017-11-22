@@ -14,7 +14,7 @@ public void setup(){
 
 public void setGame(){
   
-  Estrategia e1 = new EstrategiaParaTeste();
+  Estrategia e1 = new EstrategiaAlphaBeta();
   Estrategia e2 = new EstrategiaMatar();
 
   //cria o jogo com as duas estratégias

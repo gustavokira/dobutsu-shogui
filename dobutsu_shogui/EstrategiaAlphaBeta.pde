@@ -1,0 +1,167 @@
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ArrayList;
+
+import core.Estrategia;
+import core.Info;
+import core.Movimento;
+
+public class EstrategiaAlphaBeta extends Estrategia{
+
+  public Movimento escolherMovimento(Info info,ArrayList<Movimento>movimentos){
+    Boards boards = new Boards();
+    Board b = boards.infoToBoard(info);
+    AlphaBeta alphabeta = new AlphaBeta(b, info.getEu().getId());
+    Move move = alphabeta.run(3);
+    
+    for(Movimento m:movimentos){
+      int mx = m.getX();
+      int my = m.getY();
+      int moveX = move.getDestinyX();
+      int moveY = move.getDestinyY();
+      String mNome = m.getPeca().getNome();
+      String moveName = move.getPieceName();
+
+      if( move.getType() == 'c' && m.getTipo().equals("colocar") && 
+          mx == moveX && my == moveY && mNome.equals(moveName)
+          ){
+        return m;
+      }
+      else if( move.getType() == 'm' && m.getTipo().equals("mover") && 
+          mx == moveX && my == moveY && mNome.equals(moveName) &&
+          m.getPeca().getX() == move.getOriginX() &&
+          m.getPeca().getY() == move.getOriginY()
+          ){
+        return m;
+      }
+    }
+
+    return null;
+  }
+  public String getNome(){
+    return "alpha";
+  }
+
+  public String getEquipe(){
+    return "ash";
+  }
+}
+
+
+public class AlphaBeta {
+
+  private int myId;
+  private int enemyId;
+  private HashMap<String, Integer> values = new HashMap<String, Integer>();
+  private Board board;  
+  
+  public static final double WINVALUE = 10000;
+  public static final double LOSEVALUE = -10000;
+  
+  public AlphaBeta(Board b,int playerTurn){
+    this.myId = playerTurn;
+    this.enemyId = 1;
+    if(this.myId == 1){
+      this.enemyId = 2;
+    }
+    this.board = b;
+    
+    values.put("leo", 10);
+    values.put("gir", 14);
+    values.put("ele", 13);
+    values.put("gal", 12);
+    values.put("pin", 11);
+  }
+  
+  public Move run(int i){
+    ArrayList<Move> moves = this.board.getMoviments(this.myId);
+    double best = -Double.MAX_VALUE;
+    HashMap<Move,Double> values = new HashMap<Move,Double>();
+    ArrayList<Move> chosen = new ArrayList<Move>();
+    //Move move = null;
+    int depth = i+1;
+    for(Move m:moves){
+      Board b = board.duplicate(board);
+      b.tick(m);
+      
+      double value = iterate(b,depth,b.getOtherPlayerId(this.myId),-Double.MAX_VALUE, Double.MAX_VALUE);
+      values.put(m,value);
+      if(value >= best){
+        best = value;
+        //move = m;
+      }
+    }
+    for(Move m:moves){
+      if(values.get(m) == best){
+        chosen.add(m);
+      }
+    }
+    return chosen.get( (int)random(chosen.size()) );
+    //return move;
+  }
+  
+  public double iterate(Board board,int depth, int playerTurn,double alpha, double beta){
+    
+    int victory = board.isFinal();
+    if(victory != 0){
+      if(victory == this.myId){
+        return WINVALUE + (depth*100);
+      }else{
+        return LOSEVALUE - (depth*100);
+      }
+    }
+    
+    if(depth > 0){
+      ArrayList<Move> moves = board.getMoviments(playerTurn);
+      
+      if(playerTurn == this.myId){
+        double best = -Double.MAX_VALUE;
+        for(Move m:moves){
+          Board b = board.duplicate(board);
+          b.tick(m);
+          
+          double value = iterate(b,depth-1,b.getOtherPlayerId(playerTurn),alpha,beta);
+          best = Math.max(value, best);
+          alpha = Math.max(best, alpha);
+          if(beta <= alpha){break;}
+        }
+        
+        return best;
+      }else{
+        double best = Double.MAX_VALUE;
+        for(Move m:moves){
+          Board b = board.duplicate(board);
+          b.tick(m);
+          double value = iterate(b,depth-1,b.getOtherPlayerId(playerTurn),alpha,beta);
+          best = Math.min(value, best);
+          beta = Math.min(best, beta);
+          if(beta <= alpha){break;}
+        }
+        return best;
+      }
+    }else{
+      
+        int id = this.myId;
+        int eid = this.enemyId;
+        double myBoard = 0;
+        double eBoard = 0;
+        double myHand = 0;
+        double eHand = 0;
+              
+        for(Piece p:board.getPiecesOnBoard(id)){
+          myBoard+=this.values.get(p.getName());
+        }
+        for(Piece p:board.getPlayerById(id).getHand()){
+          myHand+=(0.5*this.values.get(p.getName()));
+        }
+        for(Piece p:board.getPiecesOnBoard(eid)){
+          eBoard+=this.values.get(p.getName());
+        }
+        for(Piece p:board.getPlayerById(eid).getHand()){
+          eHand+=(0.5*this.values.get(p.getName()));
+        }
+        return myBoard+myHand-eBoard-eHand;
+      }      
+  }
+}
